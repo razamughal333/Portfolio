@@ -15,4 +15,4 @@ https://razamughal333.github.io/Portfolio
 ## Contact
 
 - GitHub: razamughal333
-- Email: your@email.com
+- Email: razahmedmughal@email.com
