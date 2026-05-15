@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects — Raza Ahmed</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+
+  <!-- NAV -->
+  <div id="nav-trigger">
+    <button id="menu-btn" onclick="toggleNav()">
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    </button>
+  </div>
+  <div id="nav-overlay" onclick="closeNav()"></div>
+  <nav id="side-nav">
+    <button id="nav-close-btn" onclick="closeNav()"><i class="fa fa-xmark"></i></button>
+    <div class="nav-brand"><span class="logo-bracket">&lt;</span>RA<span class="logo-bracket">/&gt;</span></div>
+    <ul class="nav-links">
+      <li><a href="index.html#home"       onclick="closeNav()">Home</a></li>
+      <li><a href="index.html#about"      onclick="closeNav()">About</a></li>
+      <li><a href="index.html#skills"     onclick="closeNav()">Skills</a></li>
+      <li><a href="index.html#experience" onclick="closeNav()">Experience</a></li>
+      <li><a href="index.html#services"   onclick="closeNav()">Services</a></li>
+      <li><a href="index.html#contact"    onclick="closeNav()">Contact</a></li>
+    </ul>
+    <div class="nav-theme-row">
+      <button class="theme-btn" onclick="toggleTheme()">
+        <i class="fa fa-moon" id="theme-icon"></i>
+        <span id="theme-label">Dark Mode</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- LANG -->
+  <div id="lang-wrap">
+    <button id="lang-btn" onclick="toggleLang()"><i class="fa fa-earth-americas"></i></button>
+    <div id="lang-drop" class="lang-hidden">
+      <button onclick="setLang('en')">🇬🇧 English</button>
+      <button onclick="setLang('ur')">🇵🇰 اردو</button>
+      <button onclick="setLang('fr')">🇫🇷 Français</button>
+      <button onclick="setLang('de')">🇩🇪 Deutsch</button>
+      <button onclick="setLang('es')">🇪🇸 Español</button>
+    </div>
+  </div>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> Back to Home</a>
+    <h1>All <span style="color:var(--accent)">Projects</span></h1>
+    <p>Featured work + all public GitHub repositories — auto-updated via GitHub API.</p>
+  </div>
+
+  <main class="section">
+    <div class="container">
+
+      <!-- FEATURED PROJECTS -->
+      <div class="sec-label">Handpicked</div>
+      <h2 class="sec-title">Featured Projects</h2>
+      <div class="sec-divider"></div>
+
+      <div class="projects-grid reveal">
+        <div class="proj-card">
+          <div class="proj-header">
+            <div class="proj-ico"><i class="fas fa-globe"></i></div>
+            <span class="badge-live"><i class="fas fa-circle fa-xs"></i> Live</span>
+          </div>
+          <h3>Personal Portfolio</h3>
+          <p>Responsive portfolio with AI chatbot powered by Google Gemini 2.5 Flash, dark/light theme, multilingual support (5 languages), GitHub API integration, and like/heart feature.</p>
+          <div class="tech-row"><span>HTML</span><span>CSS</span><span>JS</span><span>Gemini AI</span></div>
+          <div class="proj-links">
+            <a href="https://razamughal333.github.io/Portfolio/" target="_blank" class="plink-live"><i class="fas fa-external-link-alt"></i> Live</a>
+            <a href="https://github.com/razamughal333/Portfolio" target="_blank" class="plink-gh"><i class="fab fa-github"></i> Code</a>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-header">
+            <div class="proj-ico"><i class="fas fa-calendar-days"></i></div>
+            <span class="badge-year">2024</span>
+          </div>
+          <h3>Rang Mahal</h3>
+          <p>Full-stack event booking &amp; management platform. Led complete frontend UI, responsive design, and database architecture using MongoDB. Final year university team project.</p>
+          <div class="tech-row"><span>Next.js</span><span>Tailwind</span><span>MongoDB</span><span>Figma</span></div>
+          <div class="proj-links">
+            <a href="https://github.com/razamughal333" target="_blank" class="plink-gh"><i class="fab fa-github"></i> Code</a>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-header">
+            <div class="proj-ico"><i class="fas fa-building-columns"></i></div>
+            <span class="badge-live"><i class="fas fa-circle fa-xs"></i> Live</span>
+          </div>
+          <h3>Business Landing Page</h3>
+          <p>Professional business landing page with modern design system, smooth scroll animations, CTA sections, and fully responsive layout across all screen sizes.</p>
+          <div class="tech-row"><span>HTML</span><span>CSS</span><span>JS</span></div>
+          <div class="proj-links">
+            <a href="https://razamughalandco.netlify.app/" target="_blank" class="plink-live"><i class="fas fa-external-link-alt"></i> Live</a>
+            <a href="https://github.com/razamughal333" target="_blank" class="plink-gh"><i class="fab fa-github"></i> Code</a>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-header">
+            <div class="proj-ico"><i class="fas fa-gamepad"></i></div>
+            <span class="badge-live"><i class="fas fa-circle fa-xs"></i> Live</span>
+          </div>
+          <h3>Gaming Store</h3>
+          <p>Gaming store landing page with product showcase, responsive grid layout, and interactive UI elements for an engaging user experience.</p>
+          <div class="tech-row"><span>HTML</span><span>CSS</span><span>JS</span></div>
+          <div class="proj-links">
+            <a href="https://razagamingstore.netlify.app" target="_blank" class="plink-live"><i class="fas fa-external-link-alt"></i> Live</a>
+            <a href="https://github.com/razamughal333" target="_blank" class="plink-gh"><i class="fab fa-github"></i> Code</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- GITHUB REPOS -->
+      <div class="sec-label" style="margin-top:5rem">GitHub Repos</div>
+      <h2 class="sec-title">All Public Repositories</h2>
+      <div class="sec-divider"></div>
+      <p style="color:var(--text2);margin-bottom:1rem;font-size:0.9rem">Auto-fetched from the GitHub API — always up to date.</p>
+
+      <div id="github-repos">
+        <div class="loading-msg">
+          <i class="fab fa-github" style="font-size:2rem;margin-bottom:0.8rem;display:block"></i>
+          Loading repositories from GitHub...
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="footer-inner">
+      <div class="footer-logo"><span class="logo-bracket">&lt;</span>RA<span class="logo-bracket">/&gt;</span></div>
+      <p>Designed &amp; Developed by <strong>Raza Ahmed</strong></p>
+      <p class="footer-copy">&copy; 2026 &bull; All Rights Reserved</p>
+    </div>
+  </footer>
+
+  <!-- BACK TO TOP -->
+  <button id="back-top" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+
+  <script src="script.js"></script>
+  <script>
+    async function loadGitHubRepos() {
+      const container = document.getElementById("github-repos");
+      try {
+        const res  = await fetch("https://api.github.com/users/razamughal333/repos?sort=updated&per_page=30");
+        const repos = await res.json();
+
+        // Handle API error (e.g. rate limit or bad response)
+        if (!res.ok || !Array.isArray(repos)) {
+          const msg = repos?.message || "GitHub API error";
+          container.innerHTML = `<p class="loading-msg">
+            ${msg.includes("rate limit") ? "⚠️ GitHub API rate limit reached. " : "⚠️ Could not load repos. "}
+            <a href="https://github.com/razamughal333" target="_blank" style="color:var(--accent)">View all repos on GitHub →</a>
+          </p>`;
+          return;
+        }
+
+        if (repos.length === 0) {
+          container.innerHTML = `<p class="loading-msg">No public repositories found. <a href="https://github.com/razamughal333" target="_blank" style="color:var(--accent)">Visit GitHub →</a></p>`;
+          return;
+        }
+
+        const grid = document.createElement("div");
+        grid.className = "github-grid";
+
+        repos.forEach(repo => {
+          const card = document.createElement("div");
+          card.className = "gh-card";
+          card.innerHTML = `
+            <h3><i class="fab fa-github" style="color:var(--accent);margin-right:0.4rem"></i>${escHtml(repo.name)}</h3>
+            <p>${escHtml(repo.description || "No description provided.")}</p>
+            <div class="gh-meta">
+              ${repo.language ? `<span><i class="fas fa-circle" style="color:var(--accent2)"></i> ${escHtml(repo.language)}</span>` : ""}
+              <span><i class="fas fa-star"></i> ${repo.stargazers_count}</span>
+              <span><i class="fas fa-code-fork"></i> ${repo.forks_count}</span>
+            </div>
+            <a href="${escHtml(repo.html_url)}" target="_blank" class="plink-gh"><i class="fab fa-github"></i> View on GitHub</a>
+            ${repo.homepage ? `<a href="${escHtml(repo.homepage)}" target="_blank" class="plink-live" style="margin-top:0.3rem"><i class="fas fa-external-link-alt"></i> Live</a>` : ""}
+          `;
+          grid.appendChild(card);
+        });
+
+        container.innerHTML = "";
+        container.appendChild(grid);
+
+        // Animate cards
+        grid.querySelectorAll(".gh-card").forEach((c, i) => {
+          c.style.opacity = "0";
+          c.style.transform = "translateY(20px)";
+          setTimeout(() => {
+            c.style.transition = "opacity 0.4s ease, transform 0.4s ease";
+            c.style.opacity = "1";
+            c.style.transform = "translateY(0)";
+          }, i * 60);
+        });
+
+      } catch (err) {
+        container.innerHTML = `<p class="loading-msg">Couldn't load repositories. <a href="https://github.com/razamughal333" target="_blank" style="color:var(--accent)">View on GitHub directly →</a></p>`;
+      }
+    }
+
+    function escHtml(str) {
+      if (!str) return "";
+      return String(str)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;");
+    }
+
+    loadGitHubRepos();
+  </script>
+</body>
+</html>
