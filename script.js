@@ -21,10 +21,11 @@
   - Rate limited to prevent spam (3 second cooldown per message)
   - Custom system prompt trained to answer questions about Raza Ahmed
 */
-const GEMINI_API_KEY = "AIzaSyCbb64itJn7CLrJW_zNuAzsbgkwmNuNCzQ";
-// const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;
+// const GEMINI_API_KEY = "AIzaSyCbb64itJn7CLrJW_zNuAzsbgkwmNuNCzQ";
+const GEMINI_API_KEY = "AIzaSyDqB1KuYZKLEvFIFxdVDThSeP99uRbBdhc";
+const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;
 // Find this line and change it to:
-const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+// const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
 const SYSTEM_PROMPT = `You are an AI assistant on Raza Ahmed's personal portfolio website. Your job is to answer questions from recruiters, developers, and visitors about Raza in a friendly, professional, and concise way.
 
 About Raza:
