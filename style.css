@@ -323,15 +323,6 @@ body {
   padding: 0 2rem;
 }
 
-.sec-label {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--accent);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  margin-bottom: 0.5rem;
-}
 .sec-title {
   font-family: "Syne", sans-serif;
   font-size: clamp(1.8rem, 4vw, 2.8rem);
@@ -340,8 +331,8 @@ body {
   margin-bottom: 1rem;
 }
 .sec-divider {
-  width: 56px;
-  height: 4px;
+  width: 100px;
+  height: 3px;
   background: linear-gradient(90deg, var(--accent), var(--accent2));
   border-radius: 4px;
   margin-bottom: 3.5rem;
@@ -1574,6 +1565,7 @@ body {
 }
 .af-block {
   margin-bottom: 3rem;
+  overflow: hidden;
 }
 .af-block h3 {
   font-family: "Syne", sans-serif;
@@ -1602,8 +1594,8 @@ body {
   background: var(--card-bg);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 1.2rem 1.5rem;
-  margin-bottom: 1rem;
+  padding: 1.2rem 1rem;
+  margin-bottom: 0.4rem;
   transition: border-color var(--transition);
 }
 .edu-card:hover,
