@@ -1,366 +1,658 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Raza Ahmed — Web Developer & CS Graduate based in Rawalpindi, Pakistan">
-  <title>Raza Ahmed | Web Developer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body class="dark-theme">
-
-  <!-- ====== NAV MENU BUTTON (top-right sticky) ====== -->
-  <div id="nav-trigger">
-    <button id="menu-btn" onclick="toggleNav()" aria-label="Toggle navigation">
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-    </button>
-  </div>
-
-  <!-- NAV OVERLAY -->
-  <div id="nav-overlay" onclick="closeNav()"></div>
-
-  <!-- SIDE NAV -->
-  <nav id="side-nav" aria-label="Main navigation">
-    <button id="nav-close-btn" onclick="closeNav()" aria-label="Close"><i class="fa fa-xmark"></i></button>
-    <div class="nav-brand"><span class="logo-bracket">&lt;</span>RA<span class="logo-bracket">/&gt;</span></div>
-    <ul class="nav-links">
-      <li><a href="#home"       onclick="closeNav()" data-i18n="nav_home">Home</a></li>
-      <li><a href="#about"      onclick="closeNav()" data-i18n="nav_about">About</a></li>
-      <li><a href="#skills"     onclick="closeNav()" data-i18n="nav_skills">Skills</a></li>
-      <li><a href="#experience" onclick="closeNav()" data-i18n="nav_exp">Experience</a></li>
-      <li><a href="#services"   onclick="closeNav()" data-i18n="nav_svc">Services</a></li>
-      <li><a href="#contact"    onclick="closeNav()" data-i18n="nav_contact">Contact</a></li>
-    </ul>
-    <div class="nav-theme-row">
-      <button class="theme-btn" onclick="toggleTheme()">
-        <i class="fa fa-moon" id="theme-icon"></i>
-        <span id="theme-label">Dark Mode</span>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Raza Ahmed — Web Developer & CS Graduate based in Rawalpindi, Pakistan"
+    />
+    <title>Raza Ahmed | Web Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="dark-theme">
+    <!-- ====== NAV MENU BUTTON (top-right sticky) ====== -->
+    <div id="nav-trigger">
+      <button
+        id="menu-btn"
+        onclick="toggleNav()"
+        aria-label="Toggle navigation"
+      >
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
       </button>
     </div>
-  </nav>
 
-  <!-- ====== LANGUAGE BUTTON ====== -->
-  <div id="lang-wrap">
-    <button id="lang-btn" onclick="toggleLang()" aria-label="Language">
-      <i class="fa fa-earth-americas"></i>
-    </button>
-    <div id="lang-drop" class="lang-hidden">
-      <button onclick="setLang('en')">🇬🇧 English</button>
-      <button onclick="setLang('ur')">🇵🇰 اردو</button>
-      <button onclick="setLang('fr')">🇫🇷 Français</button>
-      <button onclick="setLang('de')">🇩🇪 Deutsch</button>
-      <button onclick="setLang('es')">🇪🇸 Español</button>
-    </div>
-  </div>
+    <!-- NAV OVERLAY -->
+    <div id="nav-overlay" onclick="closeNav()"></div>
 
-  <!-- ====== HERO ====== -->
-  <section id="home" class="section hero-section">
-    <div class="hero-bg" id="hero-bg"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <span class="hero-chip" data-i18n="hero_chip">Available for Work</span>
-      <h1 class="hero-name">Raza Ahmed</h1>
-      <div class="hero-typed-row">
-        <span class="bracket">&lt;</span>
-        <span id="typed-word"></span>
-        <span class="cursor-blink">|</span>
-        <span class="bracket">/&gt;</span>
+    <!-- SIDE NAV -->
+    <nav id="side-nav" aria-label="Main navigation">
+      <button id="nav-close-btn" onclick="closeNav()" aria-label="Close">
+        <i class="fa fa-xmark"></i>
+      </button>
+      <div class="nav-brand">
+        <span class="logo-bracket">&lt;</span>RA<span class="logo-bracket"
+          >/&gt;</span
+        >
       </div>
-      <p class="hero-tagline" data-i18n="hero_tag">CS Graduate &bull; Web Developer &bull; Commodity Trader</p>
-      <div class="hero-btns">
-        <a href="#contact"            class="btn-primary" data-i18n="btn_hire">Hire Me</a>
-        <a href="Raza_Ahmed_CV.docx" download class="btn-ghost"><i class="fas fa-download"></i> <span data-i18n="btn_dl">Download CV</span></a>
-        <a href="Raza_Ahmed_CV.docx" target="_blank" class="btn-ghost"><i class="fas fa-eye"></i> <span data-i18n="btn_view">View CV</span></a>
+      <ul class="nav-links">
+        <li>
+          <a href="#home" onclick="closeNav()" data-i18n="nav_home">Home</a>
+        </li>
+        <li>
+          <a href="#about" onclick="closeNav()" data-i18n="nav_about">About</a>
+        </li>
+        <li>
+          <a href="#skills" onclick="closeNav()" data-i18n="nav_skills"
+            >Skills</a
+          >
+        </li>
+        <li>
+          <a href="#experience" onclick="closeNav()" data-i18n="nav_exp"
+            >Experience</a
+          >
+        </li>
+        <li>
+          <a href="#services" onclick="closeNav()" data-i18n="nav_svc"
+            >Services</a
+          >
+        </li>
+        <li>
+          <a href="#contact" onclick="closeNav()" data-i18n="nav_contact"
+            >Contact</a
+          >
+        </li>
+      </ul>
+      <div class="nav-theme-row">
+        <button class="theme-btn" onclick="toggleTheme()">
+          <i class="fa fa-moon" id="theme-icon"></i>
+          <span id="theme-label">Dark Mode</span>
+        </button>
       </div>
-      <div class="hero-socials">
-        <a href="https://github.com/razamughal333"           target="_blank" aria-label="GitHub"   ><i class="fab fa-github"></i></a>
-        <a href="https://linkedin.com/in/raza-ahmed333/"      target="_blank" aria-label="LinkedIn" ><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://instagram.com/raza_mughal_333"       target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://x.com/RazaMughal_333"                target="_blank" aria-label="Twitter/X"><i class="fab fa-x-twitter"></i></a>
-        <a href="mailto:razahmedmughal@gmail.com"                              aria-label="Email"   ><i class="fas fa-envelope"></i></a>
+    </nav>
+
+    <!-- ====== LANGUAGE BUTTON ====== -->
+    <div id="lang-wrap">
+      <button id="lang-btn" onclick="toggleLang()" aria-label="Language">
+        <i class="fa fa-earth-americas"></i>
+      </button>
+      <div id="lang-drop" class="lang-hidden">
+        <button onclick="setLang('en')">🇬🇧 English</button>
+        <button onclick="setLang('ur')">🇵🇰 اردو</button>
+        <button onclick="setLang('fr')">🇫🇷 Français</button>
+        <button onclick="setLang('de')">🇩🇪 Deutsch</button>
+        <button onclick="setLang('es')">🇪🇸 Español</button>
       </div>
     </div>
-    <div class="scroll-indicator">
-      <span data-i18n="scroll_down">Scroll</span>
-      <i class="fas fa-chevron-down bounce"></i>
-    </div>
-  </section>
 
-  <!-- ====== ABOUT ====== -->
-  <section id="about" class="section">
-    <div class="container">
-      <div class="sec-label" data-i18n="about_label">Get to Know Me</div>
-      <h2 class="sec-title" data-i18n="about_title">About Me</h2>
-      <div class="sec-divider"></div>
-
-      <div class="about-grid reveal">
-        <div class="about-text">
-          <p data-i18n="about_p1">I'm a Computer Science graduate from IST Islamabad, currently building full-stack web applications with the MERN stack. I've spent 18+ months as an independent commodity trader, sharpening my analytical thinking and discipline.</p>
-          <p data-i18n="about_p2">My mix of software development, trading, and business exposure makes me a great fit for fintech or proptech roles. I'm passionate about clean code and great user experience.</p>
-          <div class="about-actions">
-            <a href="about.html" class="btn-primary" data-i18n="about_more">Know More <i class="fas fa-arrow-right"></i></a>
-            <a href="Raza_Ahmed_CV.docx" download class="btn-ghost"><i class="fas fa-download"></i> CV</a>
-          </div>
+    <!-- ====== HERO ====== -->
+    <section id="home" class="section hero-section">
+      <div class="hero-bg" id="hero-bg"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <span class="hero-chip" data-i18n="hero_chip">Available for Work</span>
+        <h1 class="hero-name">Raza Ahmed</h1>
+        <div class="hero-typed-row">
+          <span class="bracket">&lt;</span>
+          <span id="typed-word"></span>
+          <span class="cursor-blink">|</span>
+          <span class="bracket">/&gt;</span>
         </div>
-        <div class="stats-grid">
-          <div class="stat-box"><span class="stat-num">18+</span><span class="stat-lbl" data-i18n="stat_trading">Months Trading</span></div>
-          <div class="stat-box"><span class="stat-num">4+</span><span class="stat-lbl" data-i18n="stat_projects">Live Projects</span></div>
-          <div class="stat-box"><span class="stat-num">CS</span><span class="stat-lbl" data-i18n="stat_grad">BSc Graduate</span></div>
-          <div class="stat-box"><span class="stat-num">6.5</span><span class="stat-lbl" data-i18n="stat_ielts">IELTS Band</span></div>
+        <p class="hero-tagline" data-i18n="hero_tag">
+          CS Graduate &bull; Web Developer &bull; Commodity Trader
+        </p>
+        <div class="hero-btns">
+          <a href="#contact" class="btn-primary" data-i18n="btn_hire"
+            >Hire Me</a
+          >
+          <a href="Raza_Ahmed_CV.docx" download class="btn-ghost"
+            ><i class="fas fa-download"></i>
+            <span data-i18n="btn_dl">Download CV</span></a
+          >
+          <a href="Raza_Ahmed_CV.docx" target="_blank" class="btn-ghost"
+            ><i class="fas fa-eye"></i>
+            <span data-i18n="btn_view">View CV</span></a
+          >
+        </div>
+        <div class="hero-socials">
+          <a
+            href="https://github.com/razamughal333"
+            target="_blank"
+            aria-label="GitHub"
+            ><i class="fab fa-github"></i
+          ></a>
+          <a
+            href="https://linkedin.com/in/raza-ahmed333/"
+            target="_blank"
+            aria-label="LinkedIn"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
+          <a
+            href="https://instagram.com/raza_mughal_333"
+            target="_blank"
+            aria-label="Instagram"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a
+            href="https://x.com/RazaMughal_333"
+            target="_blank"
+            aria-label="Twitter/X"
+            ><i class="fab fa-x-twitter"></i
+          ></a>
+          <a href="mailto:razahmedmughal@gmail.com" aria-label="Email"
+            ><i class="fas fa-envelope"></i
+          ></a>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ====== SKILLS ====== -->
-  <section id="skills" class="section alt-section">
-    <div class="container">
-      <div class="sec-label" data-i18n="skills_label">Tech Stack</div>
-      <h2 class="sec-title" data-i18n="skills_title">Skills &amp; Tools</h2>
-      <div class="sec-divider"></div>
-
-      <div class="skills-grid reveal">
-        <div class="skill-pill"><i class="fab fa-html5" style="color:#e44d26"></i><span>HTML5</span></div>
-        <div class="skill-pill"><i class="fab fa-css3-alt" style="color:#264de4"></i><span>CSS3</span></div>
-        <div class="skill-pill"><i class="fab fa-js" style="color:#f7df1e"></i><span>JavaScript</span></div>
-        <div class="skill-pill"><i class="fab fa-react" style="color:#61dafb"></i><span>React</span></div>
-        <!-- Node.js hidden temporarily — will unhide when learned -->
-        <!-- <div class="skill-pill"><i class="fab fa-node-js" style="color:#68a063"></i><span>Node.js</span></div> -->
-        <!-- MongoDB hidden temporarily — will unhide when learned -->
-        <!-- <div class="skill-pill"><i class="fas fa-leaf" style="color:#47a248"></i><span>MongoDB</span></div> -->
-        <div class="skill-pill"><i class="fab fa-git-alt" style="color:#f05032"></i><span>Git</span></div>
-        <div class="skill-pill"><i class="fab fa-github"></i><span>GitHub</span></div>
-        <div class="skill-pill"><i class="fas fa-wind" style="color:#38bdf8"></i><span>Tailwind</span></div>
-        <div class="skill-pill"><i class="fab fa-figma" style="color:#f24e1e"></i><span>Figma</span></div>
-        <div class="skill-pill"><i class="fas fa-chart-line" style="color:var(--accent)"></i><span>Trading</span></div>
-        <div class="skill-pill"><i class="fas fa-mobile-screen-button" style="color:var(--accent)"></i><span>Responsive</span></div>
+      <div class="scroll-indicator">
+        <span data-i18n="scroll_down">Scroll</span>
+        <i class="fas fa-chevron-down bounce"></i>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ====== EXPERIENCE ====== -->
-  <section id="experience" class="section">
-    <div class="container">
-      <div class="sec-label" data-i18n="exp_label">My Journey</div>
-      <h2 class="sec-title" data-i18n="exp_title">Experience</h2>
-      <div class="sec-divider"></div>
+    <!-- ====== ABOUT ====== -->
+    <section id="about" class="section">
+      <div class="container">
+        <div class="sec-label" data-i18n="about_label">Get to Know Me</div>
+        <h2 class="sec-title" data-i18n="about_title">About Me</h2>
+        <div class="sec-divider"></div>
 
-      <div class="timeline reveal">
-        <div class="tl-item">
-          <div class="tl-dot filled"></div>
-          <div class="tl-card">
-            <div class="tl-top">
-              <span class="tl-year">2023 – Present</span>
-              <span class="badge-trade">Trading</span>
+        <div class="about-grid reveal">
+          <div class="about-text">
+            <p data-i18n="about_p1">
+              Computer Science graduate, Frontend Developer with experience in
+              full-stack web applications with the MERN stack.
+              <br />
+              I've spent 18+ months as an independent commodity trader,
+              sharpening my analytical thinking and discipline.
+            </p>
+            <p data-i18n="about_p2">
+              My mix of software development, trading, and business exposure
+              makes me a great fit for fintech or proptech roles. I'm passionate
+              about clean code and great user experience.
+            </p>
+            <div class="about-actions">
+              <a href="about.html" class="btn-primary" data-i18n="about_more"
+                >Know More <i class="fas fa-arrow-right"></i
+              ></a>
+              <a href="Raza_Ahmed_CV.docx" download class="btn-ghost"
+                ><i class="fas fa-download"></i> CV</a
+              >
             </div>
-            <h3>Independent Commodity Trader</h3>
-            <p class="tl-org">Self-Directed</p>
-            <ul>
-              <li>Managing a personal trading account for 18+ months with consistent technical analysis</li>
-              <li>Managing portfolios for select clients on a profit-sharing basis</li>
-              <li>Deep expertise in market psychology, global market dynamics &amp; risk-reward strategies</li>
-            </ul>
           </div>
-        </div>
-        <!-- Dev Role card removed — only trading experience shown for now -->
-      </div>
-
-      <!-- PROJECTS SUBSECTION -->
-      <div class="sec-label" style="margin-top:5rem" data-i18n="proj_label">What I've Built</div>
-      <h2 class="sec-title" data-i18n="proj_title">Projects</h2>
-      <div class="sec-divider"></div>
-
-      <div class="projects-grid reveal">
-        <div class="proj-card">
-          <div class="proj-header">
-            <div class="proj-ico"><i class="fas fa-globe"></i></div>
-            <span class="badge-live"><i class="fas fa-circle fa-xs"></i> Live</span>
+          <div class="stats-grid">
+            <div class="stat-box">
+              <span class="stat-num">18+</span
+              ><span class="stat-lbl" data-i18n="stat_trading"
+                >Months Trading</span
+              >
+            </div>
+            <div class="stat-box">
+              <span class="stat-num">4+</span
+              ><span class="stat-lbl" data-i18n="stat_projects"
+                >Live Projects</span
+              >
+            </div>
+            <div class="stat-box">
+              <span class="stat-num">CS</span
+              ><span class="stat-lbl" data-i18n="stat_grad">BSc Graduate</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-num">6.5</span
+              ><span class="stat-lbl" data-i18n="stat_ielts">IELTS Band</span>
+            </div>
           </div>
-          <h3>Personal Portfolio</h3>
-          <p>Responsive portfolio with AI chatbot, dark/light theme, multilingual support &amp; GitHub API integration.</p>
-          <div class="tech-row"><span>HTML</span><span>CSS</span><span>JS</span><span>Gemini AI</span></div>
-          <div class="proj-links">
-            <a href="https://razamughal333.github.io/Portfolio/" target="_blank" class="plink-live"><i class="fas fa-external-link-alt"></i> Live</a>
-            <a href="https://github.com/razamughal333"           target="_blank" class="plink-gh"  ><i class="fab fa-github"></i> Code</a>
-          </div>
-        </div>
-
-        <div class="proj-card">
-          <div class="proj-header">
-            <div class="proj-ico"><i class="fas fa-calendar-days"></i></div>
-            <span class="badge-year">2024</span>
-          </div>
-          <h3>Rang Mahal</h3>
-          <p>Full-stack event booking &amp; management platform. Led frontend, responsive design &amp; MongoDB architecture.</p>
-          <div class="tech-row"><span>Next.js</span><span>Tailwind</span><span>MongoDB</span><span>Figma</span></div>
-          <div class="proj-links">
-            <a href="https://github.com/razamughal333" target="_blank" class="plink-gh"><i class="fab fa-github"></i> Code</a>
-          </div>
-        </div>
-
-        <div class="proj-card">
-          <div class="proj-header">
-            <div class="proj-ico"><i class="fas fa-building-columns"></i></div>
-            <span class="badge-live"><i class="fas fa-circle fa-xs"></i> Live</span>
-          </div>
-          <h3>Business Landing Page</h3>
-          <p>Modern business landing page with clean animations, call-to-action sections &amp; responsive layout.</p>
-          <div class="tech-row"><span>HTML</span><span>CSS</span><span>JS</span></div>
-          <div class="proj-links">
-            <a href="https://razamughalandco.netlify.app/" target="_blank" class="plink-live"><i class="fas fa-external-link-alt"></i> Live</a>
-            <a href="https://github.com/razamughal333"     target="_blank" class="plink-gh"  ><i class="fab fa-github"></i> Code</a>
-          </div>
-        </div>
-
-        <div class="proj-card proj-card-empty">
-          <div class="proj-header">
-            <div class="proj-ico pulse-ico"><i class="fas fa-plus"></i></div>
-          </div>
-          <h3 data-i18n="proj_soon">More Coming Soon</h3>
-          <p data-i18n="proj_soon_p">Next project is in the works. Watch this space!</p>
-          <div class="pulse-dots"><span></span><span></span><span></span></div>
         </div>
       </div>
+    </section>
 
-      <div class="text-center mt-4">
-        <a href="projects.html" class="btn-primary" data-i18n="btn_all_proj">View All Projects <i class="fas fa-arrow-right"></i></a>
+    <!-- ====== SKILLS ====== -->
+    <section id="skills" class="section alt-section">
+      <div class="container">
+        <div class="sec-label" data-i18n="skills_label">Tech Stack</div>
+        <h2 class="sec-title" data-i18n="skills_title">Skills &amp; Tools</h2>
+        <div class="sec-divider"></div>
+
+        <div class="skills-grid reveal">
+          <div class="skill-pill">
+            <i class="fab fa-html5" style="color: #e44d26"></i
+            ><span>HTML5</span>
+          </div>
+          <div class="skill-pill">
+            <i class="fab fa-css3-alt" style="color: #264de4"></i
+            ><span>CSS3</span>
+          </div>
+          <div class="skill-pill">
+            <i class="fab fa-js" style="color: #f7df1e"></i
+            ><span>JavaScript</span>
+          </div>
+          <div class="skill-pill">
+            <i class="fab fa-react" style="color: #61dafb"></i
+            ><span>React</span>
+          </div>
+          <!-- Node.js hidden temporarily — will unhide when learned -->
+          <!-- <div class="skill-pill"><i class="fab fa-node-js" style="color:#68a063"></i><span>Node.js</span></div> -->
+          <!-- MongoDB hidden temporarily — will unhide when learned -->
+          <!-- <div class="skill-pill"><i class="fas fa-leaf" style="color:#47a248"></i><span>MongoDB</span></div> -->
+          <div class="skill-pill">
+            <i class="fab fa-git-alt" style="color: #f05032"></i
+            ><span>Git</span>
+          </div>
+          <div class="skill-pill">
+            <i class="fab fa-github"></i><span>GitHub</span>
+          </div>
+          <div class="skill-pill">
+            <i class="fas fa-wind" style="color: #38bdf8"></i
+            ><span>Tailwind</span>
+          </div>
+          <div class="skill-pill">
+            <i class="fab fa-figma" style="color: #f24e1e"></i
+            ><span>Figma</span>
+          </div>
+          <div class="skill-pill">
+            <i class="fas fa-chart-line" style="color: var(--accent)"></i
+            ><span>Trading</span>
+          </div>
+          <div class="skill-pill">
+            <i
+              class="fas fa-mobile-screen-button"
+              style="color: var(--accent)"
+            ></i
+            ><span>Responsive</span>
+          </div>
+        </div>
       </div>
+    </section>
+
+    <!-- ====== EXPERIENCE ====== -->
+    <section id="experience" class="section">
+      <div class="container">
+        <div class="sec-label" data-i18n="exp_label">My Journey</div>
+        <h2 class="sec-title" data-i18n="exp_title">Experience</h2>
+        <div class="sec-divider"></div>
+
+        <div class="timeline reveal">
+          <div class="tl-item">
+            <div class="tl-dot filled"></div>
+            <div class="tl-card">
+              <div class="tl-top">
+                <span class="tl-year">2023 – Present</span>
+                <span class="badge-trade">Trading</span>
+              </div>
+              <h3>Independent Commodity Trader</h3>
+              <p class="tl-org">Self-Directed</p>
+              <ul>
+                <li>
+                  Managing a personal trading account for 18+ months with
+                  consistent technical analysis
+                </li>
+                <li>
+                  Managing portfolios for select clients on a profit-sharing
+                  basis
+                </li>
+                <li>
+                  Deep expertise in market psychology, global market dynamics
+                  &amp; risk-reward strategies
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- Dev Role card removed — only trading experience shown for now -->
+        </div>
+
+        <!-- PROJECTS SUBSECTION -->
+        <div class="sec-label" style="margin-top: 5rem" data-i18n="proj_label">
+          What I've Built
+        </div>
+        <h2 class="sec-title" data-i18n="proj_title">Projects</h2>
+        <div class="sec-divider"></div>
+
+        <div class="projects-grid reveal">
+          <div class="proj-card">
+            <div class="proj-header">
+              <div class="proj-ico"><i class="fas fa-globe"></i></div>
+              <span class="badge-live"
+                ><i class="fas fa-circle fa-xs"></i> Live</span
+              >
+            </div>
+            <h3>Personal Portfolio</h3>
+            <p>
+              Responsive portfolio with AI chatbot, dark/light theme,
+              multilingual support &amp; GitHub API integration.
+            </p>
+            <div class="tech-row">
+              <span>HTML</span><span>CSS</span><span>JS</span
+              ><span>Gemini AI</span>
+            </div>
+            <div class="proj-links">
+              <a
+                href="https://razamughal333.github.io/Portfolio/"
+                target="_blank"
+                class="plink-live"
+                ><i class="fas fa-external-link-alt"></i> Live</a
+              >
+              <a
+                href="https://github.com/razamughal333"
+                target="_blank"
+                class="plink-gh"
+                ><i class="fab fa-github"></i> Code</a
+              >
+            </div>
+          </div>
+
+          <div class="proj-card">
+            <div class="proj-header">
+              <div class="proj-ico"><i class="fas fa-calendar-days"></i></div>
+              <span class="badge-year">2024</span>
+            </div>
+            <h3>Rang Mahal</h3>
+            <p>
+              Full-stack event booking &amp; management platform. Led frontend,
+              responsive design &amp; MongoDB architecture.
+            </p>
+            <div class="tech-row">
+              <span>Next.js</span><span>Tailwind</span><span>MongoDB</span
+              ><span>Figma</span>
+            </div>
+            <div class="proj-links">
+              <a
+                href="https://github.com/razamughal333"
+                target="_blank"
+                class="plink-gh"
+                ><i class="fab fa-github"></i> Code</a
+              >
+            </div>
+          </div>
+
+          <div class="proj-card">
+            <div class="proj-header">
+              <div class="proj-ico">
+                <i class="fas fa-building-columns"></i>
+              </div>
+              <span class="badge-live"
+                ><i class="fas fa-circle fa-xs"></i> Live</span
+              >
+            </div>
+            <h3>Business Landing Page</h3>
+            <p>
+              Modern business landing page with clean animations, call-to-action
+              sections &amp; responsive layout.
+            </p>
+            <div class="tech-row">
+              <span>HTML</span><span>CSS</span><span>JS</span>
+            </div>
+            <div class="proj-links">
+              <a
+                href="https://razamughalandco.netlify.app/"
+                target="_blank"
+                class="plink-live"
+                ><i class="fas fa-external-link-alt"></i> Live</a
+              >
+              <a
+                href="https://github.com/razamughal333"
+                target="_blank"
+                class="plink-gh"
+                ><i class="fab fa-github"></i> Code</a
+              >
+            </div>
+          </div>
+
+          <div class="proj-card proj-card-empty">
+            <div class="proj-header">
+              <div class="proj-ico pulse-ico"><i class="fas fa-plus"></i></div>
+            </div>
+            <h3 data-i18n="proj_soon">More Coming Soon</h3>
+            <p data-i18n="proj_soon_p">
+              Next project is in the works. Watch this space!
+            </p>
+            <div class="pulse-dots">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-4">
+          <a href="projects.html" class="btn-primary" data-i18n="btn_all_proj"
+            >View All Projects <i class="fas fa-arrow-right"></i
+          ></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== SERVICES ====== -->
+    <section id="services" class="section alt-section">
+      <div class="container">
+        <div class="sec-label" data-i18n="svc_label">What I Offer</div>
+        <h2 class="sec-title" data-i18n="svc_title">Services</h2>
+        <div class="sec-divider"></div>
+
+        <div class="services-grid reveal">
+          <div class="svc-card">
+            <div class="svc-ico"><i class="fas fa-code"></i></div>
+            <h3 data-i18n="svc1_title">Web Development</h3>
+            <p data-i18n="svc1_desc">
+              End-to-end development using the MERN stack. From concept to
+              deployment — fast, functional &amp; scalable.
+            </p>
+          </div>
+          <div class="svc-card svc-featured">
+            <div class="svc-ico"><i class="fas fa-laptop-code"></i></div>
+            <h3 data-i18n="svc2_title">Frontend Development</h3>
+            <p data-i18n="svc2_desc">
+              Pixel-perfect interfaces with HTML, CSS, JS &amp; React. Clean
+              code, great performance, smooth UX.
+            </p>
+          </div>
+          <div class="svc-card">
+            <div class="svc-ico">
+              <i class="fas fa-mobile-screen-button"></i>
+            </div>
+            <h3 data-i18n="svc3_title">Responsive UI/UX</h3>
+            <p data-i18n="svc3_desc">
+              Designs that shine on every device — mobile, tablet, desktop.
+              Built with accessibility in mind.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== CONTACT ====== -->
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="sec-label" data-i18n="contact_label">Let's Connect</div>
+        <h2 class="sec-title" data-i18n="contact_title">Get In Touch</h2>
+        <div class="sec-divider"></div>
+
+        <div class="contact-grid reveal">
+          <div class="contact-info">
+            <p class="contact-intro" data-i18n="contact_intro">
+              Available for remote &amp; on-site work. Let's build something
+              great together.
+            </p>
+            <div class="cinfo-list">
+              <div class="ci-row">
+                <i class="fas fa-location-dot"></i
+                ><span>Rawalpindi / Islamabad, Pakistan</span>
+              </div>
+              <div class="ci-row">
+                <i class="fas fa-phone"></i
+                ><a href="tel:+923362236669">+92 336 2236669</a>
+              </div>
+              <div class="ci-row">
+                <i class="fas fa-envelope"></i
+                ><a href="mailto:razahmedmughal@gmail.com"
+                  >razahmedmughal@gmail.com</a
+                >
+              </div>
+            </div>
+            <div class="contact-socials">
+              <a
+                href="https://github.com/razamughal333"
+                target="_blank"
+                aria-label="GitHub"
+                ><i class="fab fa-github"></i
+              ></a>
+              <a
+                href="https://linkedin.com/in/raza-ahmed333/"
+                target="_blank"
+                aria-label="LinkedIn"
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+              <a
+                href="https://instagram.com/raza_mughal_333"
+                target="_blank"
+                aria-label="Instagram"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a
+                href="https://x.com/RazaMughal_333"
+                target="_blank"
+                aria-label="X"
+                ><i class="fab fa-x-twitter"></i
+              ></a>
+              <a href="mailto:razahmedmughal@gmail.com" aria-label="Email"
+                ><i class="fas fa-envelope"></i
+              ></a>
+            </div>
+          </div>
+
+          <form class="cform" onsubmit="handleForm(event)">
+            <div class="fgroup">
+              <label data-i18n="fl_name">Your Name</label>
+              <input type="text" id="f-name" placeholder="John Doe" required />
+            </div>
+            <div class="fgroup">
+              <label data-i18n="fl_email">Your Email</label>
+              <input
+                type="email"
+                id="f-email"
+                placeholder="john@example.com"
+                required
+              />
+            </div>
+            <div class="fgroup">
+              <label data-i18n="fl_msg">Message</label>
+              <textarea
+                id="f-msg"
+                rows="5"
+                placeholder="Hi Raza, I'd like to..."
+                required
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              class="btn-primary btn-full"
+              data-i18n="btn_send"
+            >
+              Send Message <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== LIKE SECTION ====== -->
+    <div id="like-section">
+      <p data-i18n="like_text">Enjoyed my portfolio? Leave a like!</p>
+      <button id="like-btn" onclick="handleLike()" class="like-btn">
+        <i class="fas fa-heart" id="like-heart"></i>
+        <span id="like-count">0</span>
+      </button>
     </div>
-  </section>
 
-  <!-- ====== SERVICES ====== -->
-  <section id="services" class="section alt-section">
-    <div class="container">
-      <div class="sec-label" data-i18n="svc_label">What I Offer</div>
-      <h2 class="sec-title" data-i18n="svc_title">Services</h2>
-      <div class="sec-divider"></div>
-
-      <div class="services-grid reveal">
-        <div class="svc-card">
-          <div class="svc-ico"><i class="fas fa-code"></i></div>
-          <h3 data-i18n="svc1_title">Web Development</h3>
-          <p data-i18n="svc1_desc">End-to-end development using the MERN stack. From concept to deployment — fast, functional &amp; scalable.</p>
+    <!-- ====== FOOTER ====== -->
+    <footer id="footer">
+      <div class="footer-inner">
+        <div class="footer-logo">
+          <span class="logo-bracket">&lt;</span>RA<span class="logo-bracket"
+            >/&gt;</span
+          >
         </div>
-        <div class="svc-card svc-featured">
-          <div class="svc-ico"><i class="fas fa-laptop-code"></i></div>
-          <h3 data-i18n="svc2_title">Frontend Development</h3>
-          <p data-i18n="svc2_desc">Pixel-perfect interfaces with HTML, CSS, JS &amp; React. Clean code, great performance, smooth UX.</p>
-        </div>
-        <div class="svc-card">
-          <div class="svc-ico"><i class="fas fa-mobile-screen-button"></i></div>
-          <h3 data-i18n="svc3_title">Responsive UI/UX</h3>
-          <p data-i18n="svc3_desc">Designs that shine on every device — mobile, tablet, desktop. Built with accessibility in mind.</p>
-        </div>
+        <p>Designed &amp; Developed by <strong>Raza Ahmed</strong></p>
+        <p class="footer-copy">
+          &copy; 2026 &bull;
+          <span data-i18n="footer_rights">All Rights Reserved</span>
+        </p>
+        <p class="footer-powered">
+          AI Chatbot powered by
+          <a href="https://ai.google.dev" target="_blank">Google Gemini</a>
+          &bull; Domain-secured API
+        </p>
       </div>
-    </div>
-  </section>
+    </footer>
 
-  <!-- ====== CONTACT ====== -->
-  <section id="contact" class="section">
-    <div class="container">
-      <div class="sec-label" data-i18n="contact_label">Let's Connect</div>
-      <h2 class="sec-title" data-i18n="contact_title">Get In Touch</h2>
-      <div class="sec-divider"></div>
-
-      <div class="contact-grid reveal">
-        <div class="contact-info">
-          <p class="contact-intro" data-i18n="contact_intro">Available for remote &amp; on-site work. Let's build something great together.</p>
-          <div class="cinfo-list">
-            <div class="ci-row"><i class="fas fa-location-dot"></i><span>Rawalpindi / Islamabad, Pakistan</span></div>
-            <div class="ci-row"><i class="fas fa-phone"></i><a href="tel:+923362236669">+92 336 2236669</a></div>
-            <div class="ci-row"><i class="fas fa-envelope"></i><a href="mailto:razahmedmughal@gmail.com">razahmedmughal@gmail.com</a></div>
-          </div>
-          <div class="contact-socials">
-            <a href="https://github.com/razamughal333"           target="_blank" aria-label="GitHub"   ><i class="fab fa-github"></i></a>
-            <a href="https://linkedin.com/in/raza-ahmed333/"      target="_blank" aria-label="LinkedIn" ><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://instagram.com/raza_mughal_333"       target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://x.com/RazaMughal_333"                target="_blank" aria-label="X"       ><i class="fab fa-x-twitter"></i></a>
-            <a href="mailto:razahmedmughal@gmail.com"                              aria-label="Email"   ><i class="fas fa-envelope"></i></a>
-          </div>
-        </div>
-
-        <form class="cform" onsubmit="handleForm(event)">
-          <div class="fgroup">
-            <label data-i18n="fl_name">Your Name</label>
-            <input type="text"  id="f-name"  placeholder="John Doe"           required>
-          </div>
-          <div class="fgroup">
-            <label data-i18n="fl_email">Your Email</label>
-            <input type="email" id="f-email" placeholder="john@example.com"   required>
-          </div>
-          <div class="fgroup">
-            <label data-i18n="fl_msg">Message</label>
-            <textarea id="f-msg" rows="5"    placeholder="Hi Raza, I'd like to..." required></textarea>
-          </div>
-          <button type="submit" class="btn-primary btn-full" data-i18n="btn_send">Send Message <i class="fas fa-paper-plane"></i></button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- ====== LIKE SECTION ====== -->
-  <div id="like-section">
-    <p data-i18n="like_text">Enjoyed my portfolio? Leave a like!</p>
-    <button id="like-btn" onclick="handleLike()" class="like-btn">
-      <i class="fas fa-heart" id="like-heart"></i>
-      <span id="like-count">0</span>
+    <!-- ====== BACK TO TOP ====== -->
+    <button
+      id="back-top"
+      onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+      aria-label="Back to top"
+    >
+      <i class="fas fa-chevron-up"></i>
     </button>
-  </div>
 
-  <!-- ====== FOOTER ====== -->
-  <footer id="footer">
-    <div class="footer-inner">
-      <div class="footer-logo"><span class="logo-bracket">&lt;</span>RA<span class="logo-bracket">/&gt;</span></div>
-      <p>Designed &amp; Developed by <strong>Raza Ahmed</strong></p>
-      <p class="footer-copy">&copy; 2026 &bull; <span data-i18n="footer_rights">All Rights Reserved</span></p>
-      <p class="footer-powered">
-        AI Chatbot powered by <a href="https://ai.google.dev" target="_blank">Google Gemini</a> &bull; Domain-secured API
-      </p>
-    </div>
-  </footer>
-
-  <!-- ====== BACK TO TOP ====== -->
-  <button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
-    <i class="fas fa-chevron-up"></i>
-  </button>
-
-  <!-- ====== CHATBOT ====== -->
-  <div id="chatbot-root">
-    <div id="chat-panel" class="chat-hidden">
-      <div id="chat-head">
-        <div class="ch-left">
-          <div class="ch-avatar"><i class="fas fa-robot"></i></div>
-          <div>
-            <div class="ch-name" data-i18n="chat_name">Raza's Assistant</div>
-            <div class="ch-online">&#9679; Online</div>
+    <!-- ====== CHATBOT ====== -->
+    <div id="chatbot-root">
+      <div id="chat-panel" class="chat-hidden">
+        <div id="chat-head">
+          <div class="ch-left">
+            <div class="ch-avatar"><i class="fas fa-robot"></i></div>
+            <div>
+              <div class="ch-name" data-i18n="chat_name">Raza's Assistant</div>
+              <div class="ch-online">&#9679; Online</div>
+            </div>
+          </div>
+          <button
+            class="ch-close"
+            onclick="toggleChat()"
+            aria-label="Close chat"
+          >
+            <i class="fas fa-xmark"></i>
+          </button>
+        </div>
+        <div id="chat-msgs">
+          <div class="cb-ai" data-i18n="chat_hi">
+            Hi! I'm Raza's AI assistant. Ask me anything about his skills,
+            projects, or background!
           </div>
         </div>
-        <button class="ch-close" onclick="toggleChat()" aria-label="Close chat"><i class="fas fa-xmark"></i></button>
+        <div id="chat-footer">
+          <input
+            id="chat-in"
+            type="text"
+            maxlength="200"
+            placeholder="Ask about Raza..."
+            data-i18n-ph="chat_ph"
+          />
+          <button id="chat-send-btn" onclick="sendMsg()">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+        <p class="chat-note" data-i18n="chat_note">
+          &#128274; Powered by Google Gemini AI &amp; domain-secured.
+        </p>
       </div>
-      <div id="chat-msgs">
-        <div class="cb-ai" data-i18n="chat_hi">Hi! I'm Raza's AI assistant. Ask me anything about his skills, projects, or background!</div>
-      </div>
-      <div id="chat-footer">
-        <input id="chat-in" type="text" maxlength="200" placeholder="Ask about Raza..." data-i18n-ph="chat_ph">
-        <button id="chat-send-btn" onclick="sendMsg()"><i class="fas fa-paper-plane"></i></button>
-      </div>
-      <p class="chat-note" data-i18n="chat_note">&#128274; Powered by Google Gemini AI &amp; domain-secured.</p>
+      <button id="chat-fab" onclick="toggleChat()" aria-label="Chat with AI">
+        <i class="fas fa-robot" id="fab-icon"></i>
+        <span class="fab-pulse"></span>
+      </button>
     </div>
-    <button id="chat-fab" onclick="toggleChat()" aria-label="Chat with AI">
-      <i class="fas fa-robot" id="fab-icon"></i>
-      <span class="fab-pulse"></span>
-    </button>
-  </div>
 
-  <!-- TOAST NOTIFICATION -->
-  <div id="toast" class="toast-hidden"></div>
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="toast-hidden"></div>
 
-  <script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>

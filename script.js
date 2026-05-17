@@ -637,7 +637,7 @@ async function sendMsg() {
     const data = await res.json();
     typing.remove();
     if (data.error) {
-      appendMsg("Sorry, something went wrong. Please try again!", "cb-ai");
+      appendMsg("Sorry, rate limit reached..", "cb-ai");
     } else {
       const reply =
         data?.candidates?.[0]?.content?.parts?.[0]?.text ||
