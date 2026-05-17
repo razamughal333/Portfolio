@@ -499,7 +499,7 @@ function initReveal() {
         }
       });
     },
-    { threshold: 0.12 },
+    { threshold: 0.05 },
   );
   els.forEach((el) => obs.observe(el));
 }
