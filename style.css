@@ -122,14 +122,15 @@ body {
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
   z-index: 1001;
+  display: none; /* Hidden from DOM entirely — no more ghost touches */
   opacity: 0;
-  pointer-events: none;
   transition: opacity 0.3s;
-  backdrop-filter: blur(4px);
 }
 #nav-overlay.active {
+  display: block;
   opacity: 1;
   pointer-events: all;
+  backdrop-filter: blur(4px); /* Only blur when actually visible */
 }
 
 /* ======= SIDE NAV ======= */

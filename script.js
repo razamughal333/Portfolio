@@ -424,14 +424,27 @@ function initTheme() {
 function toggleNav() {
   const nav = document.getElementById("side-nav");
   const overlay = document.getElementById("nav-overlay");
-  if (nav) nav.classList.toggle("open");
-  if (overlay) overlay.classList.toggle("active");
+  const isOpen = nav && nav.classList.contains("open");
+  if (!isOpen) {
+    if (nav) nav.classList.add("open");
+    if (overlay) {
+      overlay.style.display = "block";
+      requestAnimationFrame(() => overlay.classList.add("active"));
+    }
+  } else {
+    closeNav();
+  }
 }
 function closeNav() {
   const nav = document.getElementById("side-nav");
   const overlay = document.getElementById("nav-overlay");
   if (nav) nav.classList.remove("open");
-  if (overlay) overlay.classList.remove("active");
+  if (overlay) {
+    overlay.classList.remove("active");
+    setTimeout(() => {
+      overlay.style.display = "none";
+    }, 320);
+  }
 }
 
 /* ====== LANG DROPDOWN ====== */
