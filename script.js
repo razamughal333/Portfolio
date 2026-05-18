@@ -2,8 +2,7 @@
    - Typing effect
    - Scroll reveal
    - Gemini AI Chatbot
-   - Contact form
-   - Toast notifications
+   - Toast
 ============================================ */
 
 /* ====== CHATBOT GEMINI API KEY ====== */
@@ -571,7 +570,7 @@ function handleForm(e) {
       message: msg,
     })
     .then(() => {
-      showToast(`Thanks ${name}! Message sent successfully. 📨`);
+      showToast(`Thanks ${name}! Message sent successfully.`);
       e.target.reset();
     })
     .catch(() => {
