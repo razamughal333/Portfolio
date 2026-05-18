@@ -1,10 +1,3 @@
-/* ============================================
-   RAZA AHMED PORTFOLIO — style.css
-   Syne (display) + Outfit (body) + JetBrains Mono (code)
-   Dark / Light theme via CSS variables
-============================================ */
-
-/* ======= CSS RESET ======= */
 *,
 *::before,
 *::after {
@@ -37,16 +30,16 @@ button {
   font-family: inherit;
 }
 
-/* ======= CSS VARIABLES ======= */
+/* CSS VARIABLES */
 :root {
-  --accent: #7c3aed; /* violet */
-  --accent2: #06b6d4; /* cyan highlight */
-  --accent-glow: rgba(124, 58, 237, 0.35);
+  --accent: #7c3aed; /*accent color for highlights and interactive elements */
+  --accent2: #06b6d4; /* A secondary accent for gradients and highlights */
+  --accent-glow: rgba(124, 58, 237, 0.35); /* For shadows and glows */
   --radius: 14px;
   --transition: 0.3s ease;
 }
 
-/* --- DARK THEME --- */
+/* DARK THEME */
 .dark-theme {
   --bg: #0a0a0f;
   --bg2: #111118;
