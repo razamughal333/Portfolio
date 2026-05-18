@@ -89,7 +89,7 @@ const i18n = {
     stat_trading: "Months Trading",
     stat_projects: "Live Projects",
     stat_grad: "BSc Graduate",
-    stat_ielts: "IELTS Band",
+    stat_tech: "Technical Skills",
     skills_label: "Tech Stack",
     skills_title: "Skills & Tools",
     exp_label: "My Journey",
@@ -153,8 +153,8 @@ const i18n = {
     stat_trading: "ماہ ٹریڈنگ",
     stat_projects: "لائیو پروجیکٹس",
     stat_grad: "بی ایس سی",
-    stat_ielts: "آئیلٹس",
-    skills_label: "ٹیک اسٹیک",
+    stat_tech: "تکنیکی مہارتیں",
+    skills_label: " جدید ٹیک اسٹیک ",
     skills_title: "مہارتیں اور ٹولز",
     exp_label: "میرا سفر",
     exp_title: "تجربہ",
@@ -213,7 +213,7 @@ const i18n = {
     stat_trading: "Mois de Trading",
     stat_projects: "Projets Live",
     stat_grad: "Diplôme CS",
-    stat_ielts: "Score IELTS",
+    stat_tech: "Moderne Compétences Techniques",
     skills_label: "Stack Tech",
     skills_title: "Compétences et Outils",
     exp_label: "Mon Parcours",
@@ -271,7 +271,7 @@ const i18n = {
     stat_trading: "Monate Trading",
     stat_projects: "Live-Projekte",
     stat_grad: "CS-Abschluss",
-    stat_ielts: "IELTS-Band",
+    stat_tech: "Modern Technische Fähigkeiten",
     skills_label: "Tech-Stack",
     skills_title: "Fähigkeiten & Tools",
     exp_label: "Mein Weg",
@@ -329,7 +329,7 @@ const i18n = {
     stat_trading: "Meses Trader",
     stat_projects: "Proyectos Live",
     stat_grad: "Grado CS",
-    stat_ielts: "Banda IELTS",
+    stat_tech: "Moderno Habilidades Técnicas",
     skills_label: "Stack Tecnológico",
     skills_title: "Habilidades y Herramientas",
     exp_label: "Mi Trayectoria",
@@ -695,3 +695,76 @@ document.addEventListener("DOMContentLoaded", () => {
   initChat();
   initActiveNav();
 });
+
+// ------->  projects.html
+async function loadGitHubRepos() {
+  const container = document.getElementById("github-repos");
+  try {
+    const res = await fetch(
+      "https://api.github.com/users/razamughal333/repos?sort=updated&per_page=30",
+    );
+    const repos = await res.json();
+
+    // Handle API error (e.g. rate limit or bad response)
+    if (!res.ok || !Array.isArray(repos)) {
+      const msg = repos?.message || "GitHub API error";
+      container.innerHTML = `<p class="loading-msg">
+            ${msg.includes("rate limit") ? "⚠️ GitHub API rate limit reached. " : "⚠️ Could not load repos. "}
+            <a href="https://github.com/razamughal333" target="_blank" style="color:var(--accent)">View all repos on GitHub →</a>
+          </p>`;
+      return;
+    }
+
+    if (repos.length === 0) {
+      container.innerHTML = `<p class="loading-msg">No public repositories found. <a href="https://github.com/razamughal333" target="_blank" style="color:var(--accent)">Visit GitHub →</a></p>`;
+      return;
+    }
+
+    const grid = document.createElement("div");
+    grid.className = "github-grid";
+
+    repos.forEach((repo) => {
+      const card = document.createElement("div");
+      card.className = "gh-card";
+      card.innerHTML = `
+            <h3><i class="fab fa-github" style="color:var(--accent);margin-right:0.4rem"></i>${escHtml(repo.name)}</h3>
+            <p>${escHtml(repo.description || "No description provided.")}</p>
+            <div class="gh-meta">
+              ${repo.language ? `<span><i class="fas fa-circle" style="color:var(--accent2)"></i> ${escHtml(repo.language)}</span>` : ""}
+              <span><i class="fas fa-star"></i> ${repo.stargazers_count}</span>
+              <span><i class="fas fa-code-fork"></i> ${repo.forks_count}</span>
+            </div>
+            <a href="${escHtml(repo.html_url)}" target="_blank" class="plink-gh"><i class="fab fa-github"></i> View on GitHub</a>
+            ${repo.homepage ? `<a href="${escHtml(repo.homepage)}" target="_blank" class="plink-live" style="margin-top:0.3rem"><i class="fas fa-external-link-alt"></i> Live</a>` : ""}
+          `;
+      grid.appendChild(card);
+    });
+
+    container.innerHTML = "";
+    container.appendChild(grid);
+
+    // Animate cards
+    grid.querySelectorAll(".gh-card").forEach((c, i) => {
+      c.style.opacity = "0";
+      c.style.transform = "translateY(20px)";
+      setTimeout(() => {
+        c.style.transition = "opacity 0.4s ease, transform 0.4s ease";
+        c.style.opacity = "1";
+        c.style.transform = "translateY(0)";
+      }, i * 60);
+    });
+  } catch (err) {
+    container.innerHTML = `<p class="loading-msg">Couldn't load repositories. <a href="https://github.com/razamughal333" target="_blank" style="color:var(--accent)">View on GitHub directly →</a></p>`;
+  }
+}
+
+function escHtml(str) {
+  if (!str) return "";
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+loadGitHubRepos();
