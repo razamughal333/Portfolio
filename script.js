@@ -1,11 +1,6 @@
-/* ============================================
-   RAZA AHMED PORTFOLIO — script.js
-   - Dark/Light theme
-   - Multilingual (EN, UR, FR, DE, ES)
+/* 
    - Typing effect
    - Scroll reveal
-   - Back-to-top button
-   - Like / heart feature
    - Gemini AI Chatbot
    - Contact form
    - Toast notifications
@@ -518,7 +513,7 @@ function handleLike() {
   const count = document.getElementById("like-count");
   if (!btn || !count) return;
 
-  let likes = parseInt(localStorage.getItem("portfolio-likes") || "0");
+  let likes = parseInt(localStorage.getItem("portfolio-likes") || "17");
   const liked = localStorage.getItem("portfolio-liked") === "true";
 
   if (!liked) {
@@ -526,9 +521,9 @@ function handleLike() {
     localStorage.setItem("portfolio-likes", likes);
     localStorage.setItem("portfolio-liked", "true");
     btn.classList.add("liked");
-    showToast("Thank you for the like! ❤️");
+    showToast("Thank you for the like!");
   } else {
-    likes = Math.max(0, likes - 1);
+    likes = Math.max(17, likes - 18); //prevent going below initial 17
     localStorage.setItem("portfolio-likes", likes);
     localStorage.setItem("portfolio-liked", "false");
     btn.classList.remove("liked");
@@ -539,7 +534,7 @@ function initLike() {
   const count = document.getElementById("like-count");
   const btn = document.getElementById("like-btn");
   if (!count) return;
-  count.textContent = localStorage.getItem("portfolio-likes") || "0";
+  count.textContent = localStorage.getItem("portfolio-likes") || "17";
   if (localStorage.getItem("portfolio-liked") === "true" && btn)
     btn.classList.add("liked");
 }
@@ -565,8 +560,26 @@ function handleForm(e) {
     showToast("Please fill all fields.");
     return;
   }
-  showToast(`Thanks ${name}! Your message has been noted. 📨`);
-  e.target.reset();
+
+  const btn = e.target.querySelector("button[type='submit']");
+  if (btn) btn.disabled = true;
+
+  emailjs
+    .send("service_rqwe8so", "template_gnmohim", {
+      name: name,
+      email: email,
+      message: msg,
+    })
+    .then(() => {
+      showToast(`Thanks ${name}! Message sent successfully. 📨`);
+      e.target.reset();
+    })
+    .catch(() => {
+      showToast("Something went wrong. Please try again.");
+    })
+    .finally(() => {
+      if (btn) btn.disabled = false;
+    });
 }
 
 /* ====== CHATBOT ====== */

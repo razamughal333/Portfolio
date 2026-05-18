@@ -2,7 +2,7 @@
 
 A fully responsive personal portfolio website built from scratch with HTML, CSS, and JavaScript.
 
-## 🌐 Live Site
+## Live Site
 
 **[razamughal333.github.io/Portfolio](https://razamughal333.github.io/Portfolio)**
 
@@ -17,19 +17,19 @@ A fully responsive personal portfolio website built from scratch with HTML, CSS,
 - **Scroll Reveal Animations** — smooth entrance effects on scroll
 - **GitHub API Integration** — auto-updates projects page with latest repos
 - **Like / Heart Feature** — visitors can leave a like (persisted in localStorage)
-- **Contact Form** — built in pure HTML/CSS/JS (no backend required)
+- **Contact Form** — integrated with EmailJS, sends messages directly to inbox
 - **Fully Responsive** — mobile, tablet, and desktop breakpoints
-- **Back to Top** — sticky scroll button
+- **Back to Top** — sticky scroll button with opacity hover effect
 - **Font Awesome Icons** — for skills, socials, and UI elements
 
 ---
 
-## 🤖 AI Portfolio Chatbot
+## AI Portfolio Chatbot
 
 ```
 AI Portfolio Chatbot
 --------------------
-- Built using Google Gemini 2.5 Flash API
+- Built using Google Gemini 2.0 Flash API
 - API key restricted to this domain only (razamughal333.github.io)
   via Google Cloud Console HTTP referrer restrictions
 - Rate limited to prevent spam (3 second cooldown per message)
@@ -40,7 +40,21 @@ AI Portfolio Chatbot
 
 ---
 
-## 📁 File Structure
+## Contact Form
+
+```
+EmailJS Integration
+-------------------
+- Contact form sends emails directly to razahmedmughal@gmail.com
+- Powered by EmailJS (no backend required)
+- Validates all fields before sending
+- Disables submit button during send to prevent spam
+- Shows success/error toast notifications
+```
+
+---
+
+## File Structure
 
 ```
 Portfolio/
@@ -59,26 +73,27 @@ Portfolio/
 
 ---
 
-## 🛠️ Built With
+## Built With
 
 - HTML5 / CSS3 / JavaScript (ES6+)
 - Google Gemini 2.5 Flash API (chatbot)
+- EmailJS (contact form)
 - GitHub REST API (projects page)
 - Font Awesome 6 (icons)
 - Google Fonts — Syne, Outfit, JetBrains Mono
 
 ---
 
-## 📬 Contact
+## Contact
 
-| Channel | Link |
-|---|---|
-| GitHub | [github.com/razamughal333](https://github.com/razamughal333) |
-| LinkedIn | [linkedin.com/in/raza-ahmed333](https://linkedin.com/in/raza-ahmed333) |
-| Email | razahmedmughal@gmail.com |
-| Instagram | [@raza_mughal_333](https://instagram.com/raza_mughal_333) |
-| Twitter/X | [@RazaMughal_333](https://x.com/RazaMughal_333) |
-| Phone | +92 336 2236669 |
+| Channel   | Link                                                                   |
+| --------- | ---------------------------------------------------------------------- |
+| GitHub    | [github.com/razamughal333](https://github.com/razamughal333)           |
+| LinkedIn  | [linkedin.com/in/raza-ahmed333](https://linkedin.com/in/raza-ahmed333) |
+| Email     | razahmedmughal@gmail.com                                               |
+| Instagram | [@raza_mughal_333](https://instagram.com/raza_mughal_333)              |
+| Twitter/X | [@RazaMughal_333](https://x.com/RazaMughal_333)                        |
+| Phone     | +92 336 2236669                                                        |
 
 ---
 
