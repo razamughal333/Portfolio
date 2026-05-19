@@ -4,18 +4,25 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Projects — Raza Ahmed</title>
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Font Awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
+
+    <!-- Main Stylesheet -->
     <link rel="stylesheet" href="style.css" />
 
+    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="favicon/favicon.ico" />
     <link
       rel="icon"
@@ -35,8 +42,9 @@
       href="favicon/apple-touch-icon.png"
     />
   </head>
+
   <body class="dark-theme">
-    <!-- NAV -->
+    <!-- ===== 3-DOT MENU ===== -->
     <div id="nav-trigger">
       <button id="menu-btn" onclick="toggleNav()">
         <span class="dot"></span><span class="dot"></span
@@ -44,12 +52,14 @@
       </button>
     </div>
     <div id="nav-overlay" onclick="closeNav()"></div>
+
+    <!-- ===== SIDE NAV ===== -->
     <nav id="side-nav">
       <button id="nav-close-btn" onclick="closeNav()">
         <i class="fa fa-xmark"></i>
       </button>
       <div class="nav-brand">
-        <span class="logo-bracket">&lt;</span>RA<span class="logo-bracket"
+        <span class="bracket-color">&lt;</span>RA<span class="bracket-color"
           >/&gt;</span
         >
       </div>
@@ -71,7 +81,7 @@
       </div>
     </nav>
 
-    <!-- LANG -->
+    <!-- ===== LANGUAGE BUTTON ===== -->
     <div id="lang-wrap">
       <button id="lang-btn" onclick="toggleLang()">
         <i class="fa fa-earth-americas"></i>
@@ -85,39 +95,47 @@
       </div>
     </div>
 
-    <!-- PAGE HERO -->
+    <!-- ===== PAGE HERO ===== -->
     <div class="page-hero">
-      <a href="index.html" class="back-home"
-        ><i class="fas fa-arrow-left"></i> Back to Home</a
-      >
-      <h1>All <span style="color: var(--accent)">Projects</span></h1>
-      <p>
+      <a href="index.html" class="back-home">
+        <i class="fas fa-arrow-left"></i>
+        <span data-i18n="back_home">Back to Home</span>
+      </a>
+      <h1>
+        <span data-i18n="proj_page_title">All</span>
+        <span style="color: var(--green)" data-i18n="proj_page_word"
+          >Projects</span
+        >
+      </h1>
+      <p data-i18n="proj_page_sub">
         Featured work + all public GitHub repositories — auto-updated via GitHub
         API.
       </p>
     </div>
 
+    <!-- ===== MAIN CONTENT ===== -->
     <main class="section">
       <div class="container">
-        <!-- FEATURED PROJECTS -->
-        <div class="sec-label">Handpicked</div>
-        <h2 class="sec-title">Featured Projects</h2>
-        <div class="sec-divider"></div>
+        <!-- Featured projects -->
+        <div class="small-label" data-i18n="proj_handpicked">Handpicked</div>
+        <h2 class="sec-title" data-i18n="proj_featured">Featured Projects</h2>
+        <div class="sec-line"></div>
 
         <div class="projects-grid reveal">
+          <!-- Portfolio -->
           <div class="proj-card">
             <div class="proj-header">
-              <div class="proj-ico"><i class="fas fa-globe"></i></div>
+              <div class="proj-icon"><i class="fas fa-globe"></i></div>
               <span class="badge-live"
                 ><i class="fas fa-circle fa-xs"></i> Live</span
               >
             </div>
-            <h3>Personal Portfolio</h3>
-            <p>
-              Responsive portfolio with AI chatbot, multilingual support &
+            <h3 data-i18n="proj1_title">Personal Portfolio</h3>
+            <p data-i18n="proj1_desc">
+              Responsive portfolio with AI chatbot, multilingual support &amp;
               GitHub API integration.
             </p>
-            <div class="tech-row">
+            <div class="tech-tags">
               <span>HTML</span><span>CSS</span><span>JS</span
               ><span>Gemini AI</span>
             </div>
@@ -125,29 +143,32 @@
               <a
                 href="https://razamughal333.github.io/Portfolio/"
                 target="_blank"
-                class="plink-live"
-                ><i class="fas fa-external-link-alt"></i> Live</a
+                class="link-live"
+                ><i class="fas fa-external-link-alt"></i>
+                <span data-i18n="link_live">Live</span></a
               >
               <a
                 href="https://github.com/razamughal333/Portfolio"
                 target="_blank"
-                class="plink-gh"
-                ><i class="fab fa-github"></i> Code</a
+                class="link-gh"
+                ><i class="fab fa-github"></i>
+                <span data-i18n="link_code">Code</span></a
               >
             </div>
           </div>
 
+          <!-- Rang Mahal -->
           <div class="proj-card">
             <div class="proj-header">
-              <div class="proj-ico"><i class="fas fa-calendar-days"></i></div>
+              <div class="proj-icon"><i class="fas fa-calendar-days"></i></div>
               <span class="badge-year">2024</span>
             </div>
-            <h3>Rang Mahal</h3>
-            <p>
-              Full-stack event booking & management platform. Led frontend,
-              responsive design & MongoDB architecture.
+            <h3 data-i18n="proj2_title">Rang Mahal</h3>
+            <p data-i18n="proj2_desc">
+              Full-stack event booking &amp; management platform. Led frontend,
+              responsive design &amp; MongoDB architecture.
             </p>
-            <div class="tech-row">
+            <div class="tech-tags">
               <span>Next.js</span><span>Tailwind</span><span>MongoDB</span
               ><span>Figma</span>
             </div>
@@ -155,111 +176,137 @@
               <a
                 href="https://github.com/razamughal333"
                 target="_blank"
-                class="plink-gh"
-                ><i class="fab fa-github"></i> Code</a
+                class="link-gh"
+                ><i class="fab fa-github"></i>
+                <span data-i18n="link_code">Code</span></a
               >
             </div>
           </div>
 
+          <!-- Business Landing Page -->
           <div class="proj-card">
             <div class="proj-header">
-              <div class="proj-ico">
+              <div class="proj-icon">
                 <i class="fas fa-building-columns"></i>
               </div>
               <span class="badge-live"
                 ><i class="fas fa-circle fa-xs"></i> Live</span
               >
             </div>
-            <h3>Business Landing Page</h3>
-            <p>
+            <h3 data-i18n="proj3_title">Business Landing Page</h3>
+            <p data-i18n="proj3_desc">
               Modern business landing page with clean animations, call-to-action
-              sections & responsive layout.
+              sections &amp; responsive layout.
             </p>
-            <div class="tech-row"><span>HTML</span><span>CSS</span></div>
+            <div class="tech-tags"><span>HTML</span><span>CSS</span></div>
             <div class="proj-links">
               <a
                 href="https://razamughalandco.netlify.app/"
                 target="_blank"
-                class="plink-live"
-                ><i class="fas fa-external-link-alt"></i> Live</a
+                class="link-live"
+                ><i class="fas fa-external-link-alt"></i>
+                <span data-i18n="link_live">Live</span></a
               >
               <a
                 href="https://github.com/razamughal333"
                 target="_blank"
-                class="plink-gh"
-                ><i class="fab fa-github"></i> Code</a
+                class="link-gh"
+                ><i class="fab fa-github"></i>
+                <span data-i18n="link_code">Code</span></a
               >
             </div>
           </div>
 
+          <!-- Gaming Store -->
           <div class="proj-card">
             <div class="proj-header">
-              <div class="proj-ico"><i class="fas fa-gamepad"></i></div>
+              <div class="proj-icon"><i class="fas fa-gamepad"></i></div>
               <span class="badge-live"
                 ><i class="fas fa-circle fa-xs"></i> Live</span
               >
             </div>
-            <h3>Gaming Store</h3>
-            <p>
+            <h3 data-i18n="proj4_title">Gaming Store</h3>
+            <p data-i18n="proj4_desc">
               Gaming store landing page with product showcase, responsive grid
-              layout, and interactive UI elements for an engaging user
-              experience.
+              layout, and interactive UI elements.
             </p>
-            <div class="tech-row"><span>HTML</span><span>CSS</span></div>
+            <div class="tech-tags"><span>HTML</span><span>CSS</span></div>
             <div class="proj-links">
               <a
                 href="https://razagamingstore.netlify.app"
                 target="_blank"
-                class="plink-live"
-                ><i class="fas fa-external-link-alt"></i> Live</a
+                class="link-live"
+                ><i class="fas fa-external-link-alt"></i>
+                <span data-i18n="link_live">Live</span></a
               >
               <a
                 href="https://github.com/razamughal333"
                 target="_blank"
-                class="plink-gh"
-                ><i class="fab fa-github"></i> Code</a
+                class="link-gh"
+                ><i class="fab fa-github"></i>
+                <span data-i18n="link_code">Code</span></a
               >
             </div>
           </div>
         </div>
 
-        <!-- GITHUB REPOS -->
-        <div class="sec-label" style="margin-top: 5rem">GitHub Repos</div>
-        <h2 class="sec-title">All Public Repositories</h2>
-        <div class="sec-divider"></div>
-        <p style="color: var(--text2); margin-bottom: 1rem; font-size: 0.9rem">
+        <!-- GitHub repos section -->
+        <div
+          class="small-label"
+          style="margin-top: 5rem"
+          data-i18n="proj_gh_label"
+        >
+          GitHub Repos
+        </div>
+        <h2 class="sec-title" data-i18n="proj_gh_title">
+          All Public Repositories
+        </h2>
+        <div class="sec-line"></div>
+        <p
+          style="color: var(--text2); margin-bottom: 1rem; font-size: 0.9rem"
+          data-i18n="proj_gh_sub"
+        >
           Auto-fetched from the GitHub API — always up to date.
         </p>
 
+        <!-- Repos are loaded here by JavaScript -->
         <div id="github-repos">
           <div class="loading-msg">
             <i
               class="fab fa-github"
               style="font-size: 2rem; margin-bottom: 0.8rem; display: block"
             ></i>
-            Loading repositories from GitHub...
+            <span data-i18n="proj_loading"
+              >Loading repositories from GitHub...</span
+            >
           </div>
         </div>
       </div>
     </main>
 
-    <!-- FOOTER -->
+    <!-- ===== FOOTER ===== -->
     <footer id="footer">
       <div class="footer-inner">
         <div class="footer-logo">
-          <span class="logo-bracket">&lt;</span>RA<span class="logo-bracket"
+          <span class="bracket-color">&lt;</span>RA<span class="bracket-color"
             >/&gt;</span
           >
         </div>
         <p>Designed &amp; Developed by <strong>Raza Ahmed</strong></p>
-        <p class="footer-copy">&copy; 2026 &bull; All Rights Reserved</p>
+        <p class="footer-small">
+          &copy; 2026 &bull;
+          <span data-i18n="footer_rights">All Rights Reserved</span>
+        </p>
       </div>
     </footer>
 
-    <!-- BACK TO TOP -->
+    <!-- Back to top -->
     <button id="back-top" aria-label="Back to top">
       <i class="fas fa-chevron-up"></i>
     </button>
+
+    <!-- Toast notification -->
+    <div id="toast" class="toast-hidden"></div>
 
     <script src="script.js"></script>
   </body>

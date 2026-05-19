@@ -4,18 +4,25 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About — Raza Ahmed</title>
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Font Awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
+
+    <!-- Main Stylesheet -->
     <link rel="stylesheet" href="style.css" />
 
+    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="favicon/favicon.ico" />
     <link
       rel="icon"
@@ -35,25 +42,24 @@
       href="favicon/apple-touch-icon.png"
     />
   </head>
+
   <body class="dark-theme">
-    <!-- NAV TRIGGER -->
+    <!-- ===== 3-DOT MENU ===== -->
     <div id="nav-trigger">
-      <button
-        id="menu-btn"
-        onclick="toggleNav()"
-        aria-label="Toggle navigation"
-      >
+      <button id="menu-btn" onclick="toggleNav()" aria-label="Open menu">
         <span class="dot"></span><span class="dot"></span
         ><span class="dot"></span>
       </button>
     </div>
     <div id="nav-overlay" onclick="closeNav()"></div>
+
+    <!-- ===== SIDE NAV ===== -->
     <nav id="side-nav">
       <button id="nav-close-btn" onclick="closeNav()">
         <i class="fa fa-xmark"></i>
       </button>
       <div class="nav-brand">
-        <span class="logo-bracket">&lt;</span>RA<span class="logo-bracket"
+        <span class="bracket-color">&lt;</span>RA<span class="bracket-color"
           >/&gt;</span
         >
       </div>
@@ -75,7 +81,7 @@
       </div>
     </nav>
 
-    <!-- LANG -->
+    <!-- ===== LANGUAGE BUTTON ===== -->
     <div id="lang-wrap">
       <button id="lang-btn" onclick="toggleLang()">
         <i class="fa fa-earth-americas"></i>
@@ -89,48 +95,62 @@
       </div>
     </div>
 
-    <!-- PAGE HERO -->
+    <!-- ===== PAGE HERO ===== -->
     <div class="page-hero">
-      <a href="index.html" class="back-home"
-        ><i class="fas fa-arrow-left"></i> Back to Home</a
-      >
-      <h1>About <span style="color: var(--accent)">Raza</span></h1>
-      <p>Background, education, and everything in between.</p>
+      <a href="index.html" class="back-home">
+        <i class="fas fa-arrow-left"></i>
+        <span data-i18n="back_home">Back to Home</span>
+      </a>
+      <h1>
+        About
+        <span style="color: var(--green)" data-i18n="about_page_name"
+          >Raza</span
+        >
+      </h1>
+      <p data-i18n="about_page_sub">
+        Background, education, and everything in between.
+      </p>
     </div>
 
-    <!-- CONTENT -->
+    <!-- ===== MAIN CONTENT ===== -->
     <main class="section">
       <div class="container">
         <div class="about-full reveal">
-          <!-- PROFILE -->
+          <!-- Profile block -->
           <div class="af-block">
-            <h3><i class="fas fa-user-circle"></i> Profile</h3>
-            <p>
+            <h3>
+              <i class="fas fa-user-circle"></i>
+              <span data-i18n="af_profile">Profile</span>
+            </h3>
+            <p data-i18n="af_profile_p1">
               Computer Science graduate with hands-on experience in frontend web
               development. Skilled in building responsive web applications using
-              HTML, tailwind CSS, JavaScript, and React.
-              <br />
-              Disciplined, strong understanding of market psychology. A
+              HTML, Tailwind CSS, JavaScript, and React.
+            </p>
+            <p data-i18n="af_profile_p2" style="margin-top: 0.8rem">
+              Disciplined, with a strong understanding of market psychology. A
               dedicated and fast learner eager to contribute to a results-driven
               team and grow within the tech industry.
             </p>
             <p style="margin-top: 0.8rem">
-              Based in
-              <strong style="color: var(--accent)"
-                >Rawalpindi / Islamabad, Pakistan</strong
-              >
-              Available for both<strong style="color: var(--accent)">
-                remote</strong
-              >
-              and
-              <strong style="color: var(--accent)">on-site</strong>
-              opportunities.
+              <span data-i18n="af_based">Based in</span>
+              <strong style="color: var(--green)">
+                Rawalpindi / Islamabad, Pakistan</strong
+              >.
+              <span data-i18n="af_avail">Available for both</span>
+              <strong style="color: var(--green)"> remote</strong>
+              <span data-i18n="af_and">and</span>
+              <strong style="color: var(--green)"> on-site</strong>
+              <span data-i18n="af_opps">opportunities.</span>
             </p>
           </div>
 
-          <!-- SKILLS RECAP -->
+          <!-- Skills block -->
           <div class="af-block">
-            <h3><i class="fas fa-code"></i> Technical Skills</h3>
+            <h3>
+              <i class="fas fa-code"></i>
+              <span data-i18n="af_skills">Technical Skills</span>
+            </h3>
             <div class="skills-grid reveal" style="justify-content: flex-start">
               <div class="skill-pill">
                 <i class="fab fa-html5" style="color: #e49526"></i
@@ -148,10 +168,6 @@
                 <i class="fab fa-react" style="color: #61dafb"></i
                 ><span>React</span>
               </div>
-              <!-- Node.js hidden temporarily — will unhide when learned -->
-              <!-- <div class="skill-pill"><i class="fab fa-node-js" style="color:#68a063"></i><span>Node.js</span></div> -->
-              <!-- MongoDB hidden temporarily — will unhide when learned -->
-              <!-- <div class="skill-pill"><i class="fas fa-leaf" style="color:#47a248"></i><span>MongoDB</span></div> -->
               <div class="skill-pill">
                 <i class="fas fa-wind" style="color: #38bdf8"></i
                 ><span>Tailwind CSS</span>
@@ -168,112 +184,157 @@
                 ><span>Figma</span>
               </div>
               <div class="skill-pill">
-                <i class="fas fa-chart-line" style="color: var(--accent)"></i
+                <i class="fas fa-chart-line" style="color: var(--green)"></i
                 ><span>Tech Analysis</span>
               </div>
               <div class="skill-pill">
-                <i class="fas fa-shield-halved" style="color: var(--accent)"></i
+                <i class="fas fa-shield-halved" style="color: var(--green)"></i
                 ><span>Risk Management</span>
               </div>
+              <!-- Node.js hidden — will unhide when learned -->
+              <!-- <div class="skill-pill"><i class="fab fa-node-js" style="color:#68a063"></i><span>Node.js</span></div> -->
+              <!-- MongoDB hidden — will unhide when learned -->
+              <!-- <div class="skill-pill"><i class="fas fa-leaf" style="color:#47a248"></i><span>MongoDB</span></div> -->
             </div>
           </div>
 
-          <!-- EDUCATION -->
+          <!-- Education block -->
           <div class="af-block">
-            <h3><i class="fas fa-graduation-cap"></i> Education</h3>
-            <div class="edu-card">
-              <h4>Bachelor of Science in Computer Science</h4>
-              <p>Institute of Space Technology, Islamabad &bull; 2020 - 2024</p>
+            <h3>
+              <i class="fas fa-graduation-cap"></i>
+              <span data-i18n="af_edu">Education</span>
+            </h3>
+            <div class="info-card">
+              <h4 data-i18n="edu1_title">
+                Bachelor of Science in Computer Science
+              </h4>
+              <p data-i18n="edu1_sub">
+                Institute of Space Technology, Islamabad &bull; 2020 – 2024
+              </p>
             </div>
-            <div class="edu-card">
-              <h4>Intermediate — Pre-Engineering (FSc)</h4>
-              <p>
+            <div class="info-card">
+              <h4 data-i18n="edu2_title">
+                Intermediate — Pre-Engineering (FSc)
+              </h4>
+              <p data-i18n="edu2_sub">
                 Milestone College and Academy, Rawalpindi &bull; 2018 – 2020
               </p>
             </div>
-            <div class="edu-card">
-              <h4>Matriculation — Pre-Medical (SSC)</h4>
-              <p>Saint Mary's Academy, Rawalpindi &bull; 2016 – 2018</p>
+            <div class="info-card">
+              <h4 data-i18n="edu3_title">Matriculation — Pre-Medical (SSC)</h4>
+              <p data-i18n="edu3_sub">
+                Saint Mary's Academy, Rawalpindi &bull; 2016 – 2018
+              </p>
             </div>
           </div>
 
-          <!-- CERTIFICATIONS -->
+          <!-- Certifications block -->
           <div class="af-block">
-            <h3><i class="fas fa-certificate"></i> Certifications</h3>
-            <div class="cert-card">
-              <h4>IELTS — Academic</h4>
-              <p>
+            <h3>
+              <i class="fas fa-certificate"></i>
+              <span data-i18n="af_certs">Certifications</span>
+            </h3>
+            <div class="info-card">
+              <h4 data-i18n="cert1_title">IELTS — Academic</h4>
+              <p data-i18n="cert1_sub">
                 Overall Band Score: 6.5 &bull; British Council &bull; September
                 2024
               </p>
             </div>
-            <div class="cert-card">
-              <h4>Soft Skills Training — 23-Hour Certified Program</h4>
-              <p>
+            <div class="info-card">
+              <h4 data-i18n="cert2_title">
+                Soft Skills Training — 23-Hour Certified Program
+              </h4>
+              <p data-i18n="cert2_sub">
                 OEC &amp; ICMPD (International Centre for Migration Policy
                 Development) &bull; December 2025
               </p>
             </div>
           </div>
 
-          <!-- LANGUAGES -->
+          <!-- Languages block -->
           <div class="af-block">
-            <h3><i class="fas fa-language"></i> Languages</h3>
+            <h3>
+              <i class="fas fa-language"></i>
+              <span data-i18n="af_langs">Languages</span>
+            </h3>
             <ul>
-              <li><strong style="color: var(--text)">Urdu</strong> — Native</li>
               <li>
-                <strong style="color: var(--text)">English</strong> —
-                Professional Proficiency (IELTS 6.5)
+                <strong data-i18n="lang_urdu">Urdu</strong> —
+                <span data-i18n="lang_urdu_level">Native</span>
+              </li>
+              <li>
+                <strong data-i18n="lang_eng">English</strong> —
+                <span data-i18n="lang_eng_level"
+                  >Professional Proficiency (IELTS 6.5)</span
+                >
               </li>
             </ul>
           </div>
 
-          <!-- INTERESTS -->
+          <!-- Interests block -->
           <div class="af-block">
-            <h3><i class="fas fa-heart"></i> Interests</h3>
+            <h3>
+              <i class="fas fa-heart"></i>
+              <span data-i18n="af_interests">Interests</span>
+            </h3>
             <ul>
-              <li>Web development &amp; open-source contribution</li>
-              <li>Global financial markets &amp; commodity trading</li>
-              <li>UI/UX design &amp; creative coding</li>
-              <li>Tech industry trends — fintech, proptech, AI</li>
+              <li data-i18n="int1">
+                Web development &amp; open-source contribution
+              </li>
+              <li data-i18n="int2">
+                Global financial markets &amp; commodity trading
+              </li>
+              <li data-i18n="int3">UI/UX design &amp; creative coding</li>
+              <li data-i18n="int4">
+                Tech industry trends — fintech, proptech, AI
+              </li>
             </ul>
           </div>
 
-          <!-- CV DOWNLOAD -->
-          <div class="af-block text-center">
+          <!-- CV download -->
+          <div class="af-block center">
             <a
               href="Raza_Ahmed_CV.docx"
               download
               class="btn-primary"
               style="margin-right: 1rem"
             >
-              <i class="fas fa-download"></i> Download CV
+              <i class="fas fa-download"></i>
+              <span data-i18n="btn_dl">Download CV</span>
             </a>
             <a href="Raza_Ahmed_CV.docx" target="_blank" class="btn-ghost">
-              <i class="fas fa-eye"></i> View CV
+              <i class="fas fa-eye"></i>
+              <span data-i18n="btn_view">View CV</span>
             </a>
           </div>
         </div>
       </div>
     </main>
 
-    <!-- FOOTER -->
+    <!-- ===== FOOTER ===== -->
     <footer id="footer">
       <div class="footer-inner">
         <div class="footer-logo">
-          <span class="logo-bracket">&lt;</span>RA<span class="logo-bracket"
+          <span class="bracket-color">&lt;</span>RA<span class="bracket-color"
             >/&gt;</span
           >
         </div>
         <p>Designed &amp; Developed by <strong>Raza Ahmed</strong></p>
-        <p class="footer-copy">&copy; 2026 &bull; All Rights Reserved</p>
+        <p class="footer-small">
+          &copy; 2026 &bull;
+          <span data-i18n="footer_rights">All Rights Reserved</span>
+        </p>
       </div>
     </footer>
 
-    <!-- BACK TO TOP -->
+    <!-- Back to top -->
     <button id="back-top" aria-label="Back to top">
       <i class="fas fa-chevron-up"></i>
     </button>
+
+    <!-- Toast notification -->
+    <div id="toast" class="toast-hidden"></div>
 
     <script src="script.js"></script>
   </body>
