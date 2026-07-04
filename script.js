@@ -1,35 +1,3 @@
-/*
-  script.js — Raza Ahmed Portfolio
-  ----------------------------------
-  - Theme toggle (dark / light)
-  - Side nav (3-dot menu)
-  - Language switcher (en, ur, fr, de, es)
-  - Typing effect (hero section)
-  - Scroll reveal animation
-  - Back to top button
-  - Like / heart button
-  - Contact form (EmailJS)
-  - AI Chatbot (Google Gemini)
-  - GitHub repos loader (projects.html)
-*/
-
-/* ==============================================
-   CHATBOT CONFIG
-   - API key is domain-restricted via Google Cloud Console
-     (only works on razamughal333.github.io)
-   - Rate limited: 3 second cooldown per message
-================================================ */
-
-/*
-  AI Portfolio Chatbot
-  --------------------
-  - Built using Google Gemini 1.5 Flash API
-  - API key restricted to this domain only (razamughal333.github.io)
-    via Google Cloud Console HTTP referrer restrictions
-  - Rate limited to prevent spam (3 second cooldown per message)
-  - Custom system prompt trained to answer questions about Raza Ahmed
-*/
-
 var GEMINI_KEY = "AIzaSyDqB1KuYZKLEvFIFxdVDThSeP99uRbBdhc";
 var GEMINI_URL =
   "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" +
