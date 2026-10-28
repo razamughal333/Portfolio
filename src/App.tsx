@@ -1,4 +1,5 @@
 import { BackToTop } from './components/BackToTop'
+import { Hero } from './components/Hero'
 import { Logo } from './components/Logo'
 import { Navbar } from './components/Navbar'
 import { Section } from './components/Section'
@@ -25,14 +26,7 @@ export default function App() {
       <Navbar />
 
       <main>
-        <section id="home" className="grid min-h-screen place-items-center px-5">
-          <div className="text-center">
-            <Logo className="mx-auto h-24 sm:h-32" />
-            <p className="mt-8 font-mono text-sm tracking-widest text-muted uppercase">
-              Foundation ready — hero comes next
-            </p>
-          </div>
-        </section>
+        <Hero />
 
         <Section id="about" title="About Me">
           <ComingNext text="// about section: coming next" />

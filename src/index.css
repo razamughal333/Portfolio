@@ -94,3 +94,79 @@
     background: color-mix(in oklab, var(--accent) 35%, transparent);
   }
 }
+
+/* ------------------------------------------------------------------ */
+/* Hero photo                                                          */
+/* Dark theme = studio photo, light theme = waterfall photo.           */
+/* Phones/tablets get the tall photos, laptops get the wide ones.      */
+/* ------------------------------------------------------------------ */
+.hero-photo {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center 12%;
+}
+
+[data-theme='dark'] .hero-photo {
+  background-image: url('./assets/hero/hero-dark-mobile.webp');
+}
+
+[data-theme='light'] .hero-photo {
+  background-image: url('./assets/hero/hero-light-mobile.webp');
+}
+
+/* Fades the photo into the page colour so the text stays readable */
+.hero-fade {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(to top, var(--bg) 0%, var(--bg) 40%, transparent 72%);
+}
+
+@media (min-width: 1024px) {
+  .hero-photo {
+    inset: 0 0 0 auto;
+    width: 68%;
+    background-position: center;
+  }
+
+  [data-theme='dark'] .hero-photo {
+    background-image: url('./assets/hero/hero-dark-desktop.webp');
+  }
+
+  [data-theme='light'] .hero-photo {
+    background-image: url('./assets/hero/hero-light-desktop.webp');
+  }
+
+  .hero-fade {
+    background:
+      linear-gradient(to right, var(--bg) 0%, var(--bg) 33%, transparent 62%),
+      linear-gradient(to top, var(--bg) 0%, transparent 20%);
+  }
+}
+
+/* Blinking cursor after the typed word */
+.typing-caret {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  margin-left: 2px;
+  vertical-align: -0.15em;
+  background: var(--accent);
+  animation: caret-blink 1s steps(1) infinite;
+}
+
+@keyframes caret-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typing-caret {
+    animation: none;
+  }
+}
