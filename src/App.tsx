@@ -1,122 +1,65 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import { BackToTop } from './components/BackToTop'
+import { Logo } from './components/Logo'
+import { Navbar } from './components/Navbar'
+import { Section } from './components/Section'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+// Temporary text for sections we haven't built yet.
+function ComingNext({ text }: { text: string }) {
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+    <p className="rounded-xl border border-dashed border-line p-6 font-mono text-sm text-muted">
+      {text}
+    </p>
   )
 }
 
-export default App
+export default function App() {
+  return (
+    <>
+      <a
+        href="#home"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-on-primary"
+      >
+        Skip to content
+      </a>
+
+      <Navbar />
+
+      <main>
+        <section id="home" className="grid min-h-screen place-items-center px-5">
+          <div className="text-center">
+            <Logo className="mx-auto h-24 sm:h-32" />
+            <p className="mt-8 font-mono text-sm tracking-widest text-muted uppercase">
+              Foundation ready — hero comes next
+            </p>
+          </div>
+        </section>
+
+        <Section id="about" title="About Me">
+          <ComingNext text="// about section: coming next" />
+        </Section>
+        <Section id="skills" title="Skills & Tools">
+          <ComingNext text="// skills section: coming next" />
+        </Section>
+        <Section id="experience" title="Experience">
+          <ComingNext text="// experience + featured projects: coming next" />
+        </Section>
+        <Section id="services" title="Services">
+          <ComingNext text="// services section: coming next" />
+        </Section>
+        <Section id="contact" title="Contact Me">
+          <ComingNext text="// contact section: coming next" />
+        </Section>
+      </main>
+
+      <footer className="border-t border-line py-10 text-center text-sm text-muted">
+        <Logo className="mx-auto h-8" />
+        <p className="mt-4">
+          Designed &amp; developed by <span className="font-semibold text-text">Raza Ahmed</span>
+        </p>
+        <p className="mt-1">© 2026 · All rights reserved</p>
+      </footer>
+
+      <BackToTop />
+    </>
+  )
+}
