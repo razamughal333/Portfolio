@@ -15,6 +15,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import type { ReactNode } from 'react'
 import { Link } from 'react-router'
 import { btnOutline, btnPrimary } from '../components/buttonStyles'
+import { SkillChips } from '../components/SkillChips'
 import {
   ABOUT_PROFILE,
   CERTIFICATIONS,
@@ -24,7 +25,6 @@ import {
   ROADMAP,
   SKILL_GROUPS,
 } from '../data/about'
-import type { SkillGroup } from '../data/about'
 import { PROFILE } from '../data/profile'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 
@@ -38,24 +38,6 @@ function Block({ icon, title, children }: { icon: IconDefinition; title: string;
       </h2>
       <div className="mt-5">{children}</div>
     </section>
-  )
-}
-
-function Chips({ group, dashed = false }: { group: SkillGroup; dashed?: boolean }) {
-  return (
-    <ul className="flex flex-wrap gap-2.5">
-      {group.skills.map((skill) => (
-        <li
-          key={skill.name}
-          className={`inline-flex items-center gap-2 rounded-full border bg-surface px-4 py-2 text-sm font-medium ${
-            dashed ? 'border-dashed border-accent/60' : 'border-line'
-          }`}
-        >
-          <FontAwesomeIcon icon={skill.icon} className="text-primary" />
-          {skill.name}
-        </li>
-      ))}
-    </ul>
   )
 }
 
@@ -104,7 +86,7 @@ export function AboutPage() {
                   </span>
                 )}
               </h3>
-              <Chips group={group} />
+              <SkillChips group={group} />
             </div>
           ))}
         </div>
@@ -112,7 +94,7 @@ export function AboutPage() {
 
       <Block icon={faRoute} title="Where I'm Heading">
         <h3 className="mb-3 font-mono text-xs tracking-widest text-muted uppercase">{ROADMAP.title}</h3>
-        <Chips group={ROADMAP} dashed />
+        <SkillChips group={ROADMAP} dashed />
       </Block>
 
       <Block icon={faGraduationCap} title="Education">

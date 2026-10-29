@@ -1,6 +1,7 @@
 import { AboutSummary } from '../components/AboutSummary'
 import { Hero } from '../components/Hero'
 import { Section } from '../components/Section'
+import { SkillsSection } from '../components/SkillsSection'
 
 // Temporary text for sections we haven't built yet.
 function ComingNext({ text }: { text: string }) {
@@ -15,9 +16,7 @@ export function HomePage() {
       <Hero />
       <AboutSummary />
 
-      <Section id="skills" title="Skills & Tools">
-        <ComingNext text="// skills section: coming next" />
-      </Section>
+      <SkillsSection />
       <Section id="experience" title="Experience">
         <ComingNext text="// experience + featured projects: coming next" />
       </Section>
