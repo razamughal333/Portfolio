@@ -3,6 +3,7 @@ import { ExperienceSection } from '../components/ExperienceSection'
 import { Hero } from '../components/Hero'
 import { ProjectsSection } from '../components/ProjectsSection'
 import { Section } from '../components/Section'
+import { ServicesSection } from '../components/ServicesSection'
 import { SkillsSection } from '../components/SkillsSection'
 
 // Temporary text for sections we haven't built yet.
@@ -21,9 +22,7 @@ export function HomePage() {
       <SkillsSection />
       <ExperienceSection />
       <ProjectsSection />
-      <Section id="services" title="Services">
-        <ComingNext text="// services section: coming next" />
-      </Section>
+      <ServicesSection />
       <Section id="contact" title="Contact Me">
         <ComingNext text="// contact section: coming next" />
       </Section>
