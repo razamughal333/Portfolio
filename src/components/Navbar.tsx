@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { Link, useLocation } from 'react-router'
 import { NAV_IDS, NAV_ITEMS } from '../data/nav'
 import { useActiveSection } from '../hooks/useActiveSection'
 import { useTheme } from '../hooks/useTheme'
@@ -24,7 +25,8 @@ function MoonIcon() {
 export function Navbar() {
   const [open, setOpen] = useState(false)
   const { theme, toggleTheme } = useTheme()
-  const active = useActiveSection(NAV_IDS)
+  const { pathname } = useLocation()
+  const active = useActiveSection(NAV_IDS, pathname === '/')
   const menuButtonRef = useRef<HTMLButtonElement>(null)
   const closeButtonRef = useRef<HTMLButtonElement>(null)
 
@@ -100,8 +102,8 @@ export function Navbar() {
             const isActive = active === item.id
             return (
               <li key={item.id}>
-                <a
-                  href={`#${item.id}`}
+                <Link
+                  to={`/#${item.id}`}
                   onClick={() => setOpen(false)}
                   aria-current={isActive ? 'true' : undefined}
                   className={`flex items-center gap-3 rounded-lg px-3 py-3 font-display text-lg font-semibold transition hover:bg-bg ${
@@ -113,7 +115,7 @@ export function Navbar() {
                     aria-hidden="true"
                   />
                   {item.label}
-                </a>
+                </Link>
               </li>
             )
           })}

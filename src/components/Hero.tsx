@@ -4,6 +4,7 @@ import type { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { PROFILE, ROLES } from '../data/profile'
 import { useTypewriter } from '../hooks/useTypewriter'
+import { btnOutline, btnPrimary } from './buttonStyles'
 
 const SOCIALS: { label: string; href: string; icon: IconDefinition }[] = [
   { label: 'GitHub', href: PROFILE.github, icon: faGithub },
@@ -12,9 +13,6 @@ const SOCIALS: { label: string; href: string; icon: IconDefinition }[] = [
   { label: 'X (Twitter)', href: PROFILE.x, icon: faXTwitter },
   { label: 'Email', href: PROFILE.mailUrl, icon: faEnvelope },
 ]
-
-const buttonBase =
-  'inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition duration-200 sm:text-base'
 
 export function Hero() {
   const typed = useTypewriter(ROLES)
@@ -57,7 +55,7 @@ export function Hero() {
           <div className="mt-8 flex flex-wrap gap-3">
             <a
               href="#contact"
-              className={`${buttonBase} bg-primary text-on-primary hover:-translate-y-0.5 hover:brightness-110`}
+              className={btnPrimary}
             >
               <FontAwesomeIcon icon={faPaperPlane} />
               Hire Me
@@ -65,7 +63,7 @@ export function Hero() {
             <a
               href={PROFILE.cvUrl}
               download
-              className={`${buttonBase} border border-line bg-surface/70 text-text backdrop-blur hover:border-accent hover:text-accent`}
+              className={btnOutline}
             >
               <FontAwesomeIcon icon={faDownload} />
               Download CV
@@ -74,7 +72,7 @@ export function Hero() {
               href={PROFILE.cvUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className={`${buttonBase} border border-line bg-surface/70 text-text backdrop-blur hover:border-accent hover:text-accent`}
+              className={btnOutline}
             >
               <FontAwesomeIcon icon={faEye} />
               View CV

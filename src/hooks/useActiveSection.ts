@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react'
 
 // Tells us which section is in the middle of the screen, so the menu can highlight it.
-export function useActiveSection(ids: string[]) {
+// `enabled` is false on pages that don't have these sections (like the About page).
+export function useActiveSection(ids: string[], enabled: boolean) {
   const [active, setActive] = useState(ids[0])
 
   useEffect(() => {
+    if (!enabled) return
+
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -19,7 +22,7 @@ export function useActiveSection(ids: string[]) {
       if (el) observer.observe(el)
     }
     return () => observer.disconnect()
-  }, [ids])
+  }, [ids, enabled])
 
-  return active
+  return enabled ? active : ''
 }
