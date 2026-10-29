@@ -1,5 +1,7 @@
 import { AboutSummary } from '../components/AboutSummary'
+import { ExperienceSection } from '../components/ExperienceSection'
 import { Hero } from '../components/Hero'
+import { ProjectsSection } from '../components/ProjectsSection'
 import { Section } from '../components/Section'
 import { SkillsSection } from '../components/SkillsSection'
 
@@ -17,9 +19,8 @@ export function HomePage() {
       <AboutSummary />
 
       <SkillsSection />
-      <Section id="experience" title="Experience">
-        <ComingNext text="// experience + featured projects: coming next" />
-      </Section>
+      <ExperienceSection />
+      <ProjectsSection />
       <Section id="services" title="Services">
         <ComingNext text="// services section: coming next" />
       </Section>
