@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router'
 import { BackToTop } from './BackToTop'
+import { ContactWizard } from './ContactWizard'
 import { Footer } from './Footer'
 import { Navbar } from './Navbar'
 import { ScrollManager } from './ScrollManager'
@@ -24,6 +25,7 @@ export function Layout() {
 
       <Footer />
       <BackToTop />
+      <ContactWizard />
     </>
   )
 }
