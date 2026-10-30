@@ -170,3 +170,38 @@
     animation: none;
   }
 }
+
+/* ------------------------------------------------------------------ */
+/* Skeleton loading: grey shimmer blocks shown while something loads   */
+/* ------------------------------------------------------------------ */
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--surface) 25%, var(--line) 50%, var(--surface) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s linear infinite;
+}
+
+/* Sits behind the hero photo. Once the photo has loaded it covers this completely. */
+.hero-photo-skeleton {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+}
+
+@media (min-width: 1024px) {
+  .hero-photo-skeleton {
+    inset: 0 0 0 auto;
+    width: 68%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+  }
+}

@@ -26,9 +26,33 @@
         document.documentElement.setAttribute('data-theme', theme)
       } catch (e) {}
     </script>
+    <style>
+      /* Shown only until the page's JavaScript has loaded; React replaces it. */
+      .boot { min-height: 100svh; display: flex; align-items: center; background: #0b0b10; }
+      [data-theme='light'] .boot { background: #e8ecf1; }
+      .boot-wrap { width: 100%; max-width: 72rem; margin: 0 auto; padding: 7rem 1.25rem 3.5rem; }
+      .boot-bar { border-radius: 999px; background: linear-gradient(90deg, #14141c 25%, #262633 50%, #14141c 75%); background-size: 200% 100%; animation: boot-shimmer 1.6s linear infinite; }
+      [data-theme='light'] .boot-bar { background: linear-gradient(90deg, #f6f8fa 25%, #c9d0da 50%, #f6f8fa 75%); background-size: 200% 100%; }
+      @keyframes boot-shimmer { to { background-position: -200% 0; } }
+      @media (prefers-reduced-motion: reduce) { .boot-bar { animation: none; } }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div class="boot" aria-hidden="true">
+        <div class="boot-wrap">
+          <div style="max-width: 36rem">
+            <div class="boot-bar" style="height: 2rem; width: 13rem"></div>
+            <div class="boot-bar" style="height: 4rem; width: 90%; margin-top: 1.5rem; border-radius: 1rem"></div>
+            <div class="boot-bar" style="height: 1.25rem; width: 70%; margin-top: 1.5rem"></div>
+            <div style="display: flex; gap: 0.75rem; margin-top: 2rem">
+              <div class="boot-bar" style="height: 3rem; width: 8rem"></div>
+              <div class="boot-bar" style="height: 3rem; width: 9rem"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

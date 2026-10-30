@@ -17,6 +17,7 @@ function readLiked() {
 // If the database can't be reached, the button hides itself instead of showing a broken count.
 export function LikeButton() {
   const [count, setCount] = useState<number | null>(null)
+  const [failed, setFailed] = useState(false)
   const [liked, setLiked] = useState(readLiked)
   const [busy, setBusy] = useState(false)
 
@@ -25,13 +26,18 @@ export function LikeButton() {
     let cancelled = false
     getLikes()
       .then((value) => !cancelled && setCount(value))
-      .catch(() => {}) // stay hidden
+      .catch(() => !cancelled && setFailed(true)) // hide the button
     return () => {
       cancelled = true
     }
   }, [])
 
-  if (count === null) return null
+  if (!likesConfigured || failed) return null
+
+  // Still waiting for the database: show a placeholder the same size as the button.
+  if (count === null) {
+    return <div aria-hidden="true" className="skeleton mx-auto mt-5 h-10 w-[4.5rem] rounded-full" />
+  }
 
   const onClick = async () => {
     if (liked || busy) return // one like per browser

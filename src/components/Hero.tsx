@@ -20,6 +20,7 @@ export function Hero() {
   return (
     <section id="home" className="relative isolate flex min-h-svh items-end overflow-hidden lg:items-center">
       {/* Photo + fade layers. Which photo shows depends on the theme and screen size (see index.css). */}
+      <div className="hero-photo-skeleton skeleton" aria-hidden="true" />
       <div className="hero-photo" aria-hidden="true" />
       <div className="hero-fade" aria-hidden="true" />
 
