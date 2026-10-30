@@ -29,7 +29,7 @@ export function Hero() {
       <div className="hero-photo" aria-hidden="true" />
       <div className="hero-fade" aria-hidden="true" />
 
-      <div className="relative mx-auto w-full max-w-6xl px-5 pt-28 pb-28 sm:px-8 sm:pb-14 lg:py-0">
+      <div className="relative mx-auto w-full max-w-6xl px-5 pt-28 pb-28 sm:px-8 sm:pb-14 lg:pt-24 lg:pb-12">
         <div className="max-w-xl">
           <p className="inline-flex items-center gap-2.5 rounded-full border border-line bg-surface/70 px-4 py-1.5 font-mono text-xs font-medium tracking-[0.18em] text-text uppercase backdrop-blur">
             <span className="relative flex size-2">
