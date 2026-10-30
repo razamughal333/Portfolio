@@ -1,3 +1,4 @@
+import { LikeButton } from './LikeButton'
 import { Logo } from './Logo'
 
 export function Footer() {
@@ -8,6 +9,7 @@ export function Footer() {
         Designed &amp; developed by <span className="font-semibold text-text">Raza Ahmed</span>
       </p>
       <p className="mt-1">© 2026 · All rights reserved</p>
+      <LikeButton />
     </footer>
   )
 }
