@@ -2,7 +2,9 @@ import { faGithub, faInstagram, faLinkedinIn, faXTwitter } from '@fortawesome/fr
 import { faDownload, faEnvelope, faEye, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { PROFILE, ROLES } from '../data/profile'
+import { useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
+import { PROFILE } from '../data/profile'
 import { useTypewriter } from '../hooks/useTypewriter'
 import { btnOutline, btnPrimary } from './buttonStyles'
 
@@ -15,7 +17,10 @@ const SOCIALS: { label: string; href: string; icon: IconDefinition }[] = [
 ]
 
 export function Hero() {
-  const typed = useTypewriter(ROLES)
+  const { t } = useTranslation()
+  // New array only when the language changes, so the typing effect doesn't restart on every render.
+  const roles = useMemo(() => t('hero.roles', { returnObjects: true }) as string[], [t])
+  const typed = useTypewriter(roles)
 
   return (
     <section id="home" className="relative isolate flex min-h-svh items-end overflow-hidden lg:items-center">
@@ -24,33 +29,33 @@ export function Hero() {
       <div className="hero-photo" aria-hidden="true" />
       <div className="hero-fade" aria-hidden="true" />
 
-      <div className="relative mx-auto w-full max-w-6xl px-5 pt-28 pb-14 sm:px-8 lg:py-0">
+      <div className="relative mx-auto w-full max-w-6xl px-5 pt-28 pb-28 sm:px-8 sm:pb-14 lg:py-0">
         <div className="max-w-xl">
           <p className="inline-flex items-center gap-2.5 rounded-full border border-line bg-surface/70 px-4 py-1.5 font-mono text-xs font-medium tracking-[0.18em] text-text uppercase backdrop-blur">
             <span className="relative flex size-2">
               <span className="absolute inline-flex size-full animate-ping rounded-full bg-accent opacity-70 motion-reduce:animate-none" />
               <span className="relative inline-flex size-2 rounded-full bg-accent" />
             </span>
-            Available for work
+            {t('hero.badge')}
           </p>
 
           <h1 className="mt-6 font-display text-5xl leading-[0.95] font-extrabold tracking-tight sm:text-7xl lg:text-8xl">
-            Raza <span className="text-primary">Ahmed</span>
+            {t('hero.firstName')} <span className="text-primary">{t('hero.lastName')}</span>
           </h1>
 
           {/* Screen readers get the plain text; sighted visitors see the typing effect. */}
           <p className="mt-5 font-mono text-lg sm:text-2xl">
-            <span className="sr-only">Web Developer</span>
-            <span aria-hidden="true">
-              <span className="text-primary">&lt; </span>
-              {typed}
+            <span className="sr-only">{roles[0]}</span>
+            <span aria-hidden="true" dir="ltr" className="inline-flex items-center gap-2">
+              <bdi dir="ltr" className="text-primary">&lt;</bdi>
+              <bdi className="whitespace-pre">{typed}</bdi>
               <span className="typing-caret" />
-              <span className="text-primary"> /&gt;</span>
+              <bdi dir="ltr" className="text-primary">/&gt;</bdi>
             </span>
           </p>
 
           <p className="mt-3 text-sm text-muted sm:text-lg">
-            CS Graduate • Web Developer • Commodity Trader
+            {t('hero.tagline')}
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
@@ -59,7 +64,7 @@ export function Hero() {
               className={btnPrimary}
             >
               <FontAwesomeIcon icon={faPaperPlane} />
-              Hire Me
+              {t('hero.hire')}
             </a>
             <a
               href={PROFILE.cvUrl}
@@ -67,7 +72,7 @@ export function Hero() {
               className={btnOutline}
             >
               <FontAwesomeIcon icon={faDownload} />
-              Download CV
+              {t('hero.download')}
             </a>
             <a
               href={PROFILE.cvUrl}
@@ -76,7 +81,7 @@ export function Hero() {
               className={btnOutline}
             >
               <FontAwesomeIcon icon={faEye} />
-              View CV
+              {t('hero.view')}
             </a>
           </div>
 

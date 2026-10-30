@@ -1,6 +1,7 @@
 import { faCheck, faCommentDots, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useEffect, useId, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import type { FormEvent, KeyboardEvent } from 'react'
 import { JOB_TYPES, OTHER_WORK, WORK_TYPES } from '../data/contactOptions'
 import { PROFILE } from '../data/profile'
@@ -40,6 +41,7 @@ function Choice({
 
 // Fixed bottom-right button that opens the 4-step "Contact me" wizard on every page.
 export function ContactWizard() {
+  const { t } = useTranslation()
   const [open, setOpen] = useState(false)
   const [step, setStep] = useState(0)
   const [status, setStatus] = useState<Status>('idle')
@@ -145,7 +147,7 @@ export function ContactWizard() {
         className="fixed right-5 bottom-5 z-30 inline-flex cursor-pointer items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-on-primary shadow-lg transition duration-200 hover:-translate-y-0.5 hover:brightness-110"
       >
         <FontAwesomeIcon icon={faCommentDots} />
-        Contact me
+        {t('common.contactMe')}
       </button>
 
       {open && (
@@ -263,7 +265,7 @@ export function ContactWizard() {
                   <label htmlFor="w-message" className={labelClass}>Message <span className="font-normal text-muted">(optional)</span></label>
                   <textarea id="w-message" name="message" rows={3} maxLength={2000} className={fieldClass} />
                 </div>
-                <div aria-hidden="true" className="absolute -left-[9999px]">
+                <div aria-hidden="true" className="sr-only">
                   <input name="website" tabIndex={-1} autoComplete="off" />
                 </div>
 

@@ -205,3 +205,43 @@
     animation: none;
   }
 }
+
+/* ------------------------------------------------------------------ */
+/* Urdu (right-to-left)                                                */
+/* ------------------------------------------------------------------ */
+/* Urdu letters join each other, so letter-spacing would break the words apart. */
+[dir='rtl'] * {
+  letter-spacing: normal !important;
+}
+
+[dir='rtl'] body,
+[dir='rtl'] .font-display,
+[dir='rtl'] .font-mono,
+[dir='rtl'] .font-sans {
+  font-family: 'Noto Naskh Arabic', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Naskh letters look smaller than Latin ones at the same size */
+[dir='rtl'] .font-mono {
+  font-size: 1.1em;
+}
+
+[dir='rtl'] h1,
+[dir='rtl'] h2,
+[dir='rtl'] h3 {
+  line-height: 1.5;
+}
+
+@media (min-width: 1024px) {
+  /* Mirror the hero: photo on the left, text on the right */
+  [dir='rtl'] .hero-photo,
+  [dir='rtl'] .hero-photo-skeleton {
+    inset: 0 auto 0 0;
+  }
+
+  [dir='rtl'] .hero-fade {
+    background:
+      linear-gradient(to left, var(--bg) 0%, var(--bg) 33%, transparent 62%),
+      linear-gradient(to top, var(--bg) 0%, transparent 20%);
+  }
+}

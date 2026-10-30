@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export function BackToTop() {
+  const { t } = useTranslation()
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
@@ -18,7 +20,7 @@ export function BackToTop() {
     <button
       type="button"
       onClick={goToTop}
-      aria-label="Back to top"
+      aria-label={t('common.backToTop')}
       tabIndex={visible ? 0 : -1}
       className={`fixed right-5 bottom-24 z-30 grid size-12 cursor-pointer place-items-center rounded-full border border-line bg-surface/80 text-text backdrop-blur transition duration-300 hover:border-accent hover:text-accent ${
         visible ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-3 opacity-0'

@@ -92,7 +92,7 @@ export function ContactSection() {
           </div>
 
           {/* Spam trap: hidden from people and screen readers. */}
-          <div aria-hidden="true" className="absolute -left-[9999px]">
+          <div aria-hidden="true" className="sr-only">
             <input name="website" tabIndex={-1} autoComplete="off" />
           </div>
 

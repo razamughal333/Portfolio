@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@400;500;600;700&family=Sora:wght@500;600;700;800&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
@@ -24,6 +24,12 @@
         var prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches
         var theme = saved === 'light' || saved === 'dark' ? saved : prefersLight ? 'light' : 'dark'
         document.documentElement.setAttribute('data-theme', theme)
+      } catch (e) {}
+      try {
+        if (localStorage.getItem('lang') === 'ur') {
+          document.documentElement.setAttribute('lang', 'ur')
+          document.documentElement.setAttribute('dir', 'rtl')
+        }
       } catch (e) {}
     </script>
     <style>

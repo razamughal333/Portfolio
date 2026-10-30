@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router'
 import { NAV_IDS, NAV_ITEMS } from '../data/nav'
 import { useActiveSection } from '../hooks/useActiveSection'
@@ -23,6 +24,7 @@ function MoonIcon() {
 }
 
 export function Navbar() {
+  const { t } = useTranslation()
   const [open, setOpen] = useState(false)
   const { theme, toggleTheme } = useTheme()
   const { pathname } = useLocation()
@@ -52,7 +54,7 @@ export function Navbar() {
         ref={menuButtonRef}
         type="button"
         onClick={() => setOpen(true)}
-        aria-label="Open menu"
+        aria-label={t('nav.openMenu')}
         aria-expanded={open}
         aria-controls="site-menu"
         className="fixed top-4 right-4 z-40 grid size-11 cursor-pointer place-items-center rounded-full border border-line bg-surface/80 text-text backdrop-blur transition hover:border-accent hover:text-accent"
@@ -76,7 +78,7 @@ export function Navbar() {
       {/* The slide-in menu panel on the right */}
       <nav
         id="site-menu"
-        aria-label="Main menu"
+        aria-label={t('nav.mainMenu')}
         inert={!open}
         className={`fixed top-0 right-0 z-50 flex h-full w-72 max-w-[85vw] flex-col border-l border-line bg-surface p-6 transition-transform duration-300 ease-out motion-reduce:transition-none ${
           open ? 'translate-x-0 shadow-2xl' : 'translate-x-full'
@@ -88,7 +90,7 @@ export function Navbar() {
             ref={closeButtonRef}
             type="button"
             onClick={() => setOpen(false)}
-            aria-label="Close menu"
+            aria-label={t('nav.closeMenu')}
             className="grid size-10 cursor-pointer place-items-center rounded-full border border-line text-text transition hover:border-accent hover:text-accent"
           >
             <svg viewBox="0 0 24 24" className="size-5" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" aria-hidden="true">
@@ -114,7 +116,7 @@ export function Navbar() {
                     className={`size-2 rounded-full transition ${isActive ? 'bg-accent' : 'bg-line'}`}
                     aria-hidden="true"
                   />
-                  {item.label}
+                  {t(`nav.${item.id}`)}
                 </Link>
               </li>
             )
@@ -130,9 +132,9 @@ export function Navbar() {
         >
           <span className="flex items-center gap-3 font-medium">
             {theme === 'dark' ? <MoonIcon /> : <SunIcon />}
-            {theme === 'dark' ? 'Dark mode' : 'Light mode'}
+            {theme === 'dark' ? t('nav.darkMode') : t('nav.lightMode')}
           </span>
-          <span className="font-mono text-xs text-muted">switch</span>
+          <span className="font-mono text-xs text-muted">{t('nav.switch')}</span>
         </button>
       </nav>
     </>

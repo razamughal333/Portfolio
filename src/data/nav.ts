@@ -1,11 +1,12 @@
 // Menu links. `id` must match the id of the section on the page.
+// The visible words live in i18n/locales (nav.<id>).
 export const NAV_ITEMS = [
-  { id: 'home', label: 'Home' },
-  { id: 'about', label: 'About' },
-  { id: 'skills', label: 'Skills' },
-  { id: 'experience', label: 'Experience' },
-  { id: 'services', label: 'Services' },
-  { id: 'contact', label: 'Contact' },
+  { id: 'home' },
+  { id: 'about' },
+  { id: 'skills' },
+  { id: 'experience' },
+  { id: 'services' },
+  { id: 'contact' },
 ] as const
 
 export const NAV_IDS: string[] = NAV_ITEMS.map((item) => item.id)
