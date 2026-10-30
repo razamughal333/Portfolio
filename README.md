@@ -115,9 +115,21 @@ public/         CV (PDF) and favicon
 
 ## Deployment
 
-The site is built for GitHub Pages under `/Portfolio/` (see `base` in `vite.config.ts`). A small
-build step copies `index.html` to `404.html`, so opening a page such as `/Portfolio/about`
-directly still works. The environment variables above must be available at build time.
+The site is published to GitHub Pages by a GitHub Actions workflow
+(`.github/workflows/deploy.yml`). Every push to `main` installs the packages, lints, builds and
+publishes the site. You can also run it by hand from the repository's **Actions** tab.
+
+One-time setup in the GitHub repository:
+
+1. **Settings > Pages > Build and deployment > Source:** choose **GitHub Actions**.
+2. **Settings > Secrets and variables > Actions > Variables:** add the five variables from the
+   table above (`VITE_EMAILJS_SERVICE_ID`, `VITE_EMAILJS_TEMPLATE_ID`, `VITE_EMAILJS_PUBLIC_KEY`,
+   `VITE_SUPABASE_URL`, `VITE_SUPABASE_KEY`). They are public values, so Variables (not Secrets) is
+   the right place.
+
+The site is built for the `/Portfolio/` path (see `base` in `vite.config.ts`). A small build step
+copies `index.html` to `404.html`, so opening a page such as `/Portfolio/about` directly still works.
+If you rename the repository, change `base` to match.
 
 ## License
 
