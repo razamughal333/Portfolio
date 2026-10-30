@@ -1,7 +1,7 @@
 import { faCheck, faCommentDots, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useEffect, useId, useRef, useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import type { FormEvent, KeyboardEvent } from 'react'
 import { JOB_TYPES, OTHER_WORK, WORK_TYPES } from '../data/contactOptions'
 import { PROFILE } from '../data/profile'
@@ -10,7 +10,7 @@ import { NotConfiguredError, sendInquiry } from '../lib/sendInquiry'
 import { btnOutline, btnPrimary } from './buttonStyles'
 import { fieldClass, labelClass } from './fieldStyles'
 
-const STEP_TITLES = ['What do you need?', 'What type of work?', 'What job type?', 'Your details'] as const
+const STEP_COUNT = 4
 type Status = 'idle' | 'sending' | 'sent' | 'error'
 
 // Pick-one / pick-many row used on steps 1 to 3.
@@ -41,7 +41,7 @@ function Choice({
 
 // Fixed bottom-right button that opens the 4-step "Contact me" wizard on every page.
 export function ContactWizard() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const [open, setOpen] = useState(false)
   const [step, setStep] = useState(0)
   const [status, setStatus] = useState<Status>('idle')
@@ -97,11 +97,11 @@ export function ContactWizard() {
     }
   }
 
-  const toggleService = (title: string) =>
-    setServices((current) => (current.includes(title) ? current.filter((s) => s !== title) : [...current, title]))
+  const toggleService = (id: string) =>
+    setServices((current) => (current.includes(id) ? current.filter((s) => s !== id) : [...current, id]))
 
-  const workValue = work === OTHER_WORK ? otherWork.trim() : work
-  const canContinue = [services.length > 0, workValue.length > 0, job.length > 0][step] ?? true
+  const canContinue =
+    [services.length > 0, work === OTHER_WORK ? otherWork.trim().length > 0 : work.length > 0, job.length > 0][step] ?? true
 
   const reset = () => {
     setStep(0)
@@ -120,15 +120,17 @@ export function ContactWizard() {
       return
     }
     setStatus('sending')
+    const en = i18n.getFixedT('en')
     try {
       await sendInquiry({
         name: String(data.get('name') ?? ''),
         email: String(data.get('email') ?? ''),
         phone: String(data.get('phone') ?? ''),
         message: String(data.get('message') ?? ''),
-        services,
-        workType: workValue,
-        jobType: job,
+        // Emails always arrive in English, whichever language the visitor used.
+        services: services.map((id) => en(`services.items.${id}.title`)),
+        workType: work === OTHER_WORK ? otherWork.trim() : en(`wizard.work.${work}`),
+        jobType: en(`wizard.job.${job}`),
         source: 'Contact me wizard',
       })
       setStatus('sent')
@@ -165,22 +167,22 @@ export function ContactWizard() {
               <div>
                 {status !== 'sent' && (
                   <p className="font-mono text-xs text-muted">
-                    Step {step + 1} of {STEP_TITLES.length}
+                    {t('wizard.stepOf', { n: step + 1, total: STEP_COUNT })}
                   </p>
                 )}
                 <h2 id={titleId} className="font-display text-2xl font-extrabold">
-                  {status === 'sent' ? 'Message sent' : STEP_TITLES[step]}
+                  {status === 'sent' ? t('wizard.doneTitle') : (t('wizard.titles', { returnObjects: true }) as string[])[step]}
                 </h2>
               </div>
-              <button type="button" onClick={close} aria-label="Close" className="grid size-9 shrink-0 cursor-pointer place-items-center rounded-full border border-line text-muted hover:border-accent hover:text-accent">
+              <button type="button" onClick={close} aria-label={t('wizard.close')} className="grid size-9 shrink-0 cursor-pointer place-items-center rounded-full border border-line text-muted hover:border-accent hover:text-accent">
                 <FontAwesomeIcon icon={faXmark} />
               </button>
             </div>
 
             {status !== 'sent' && (
               <div className="mt-4 flex gap-1.5" aria-hidden="true">
-                {STEP_TITLES.map((title, index) => (
-                  <span key={title} className={`h-1 flex-1 rounded-full ${index <= step ? 'bg-accent' : 'bg-line'}`} />
+                {Array.from({ length: STEP_COUNT }, (_, index) => (
+                  <span key={index} className={`h-1 flex-1 rounded-full ${index <= step ? 'bg-accent' : 'bg-line'}`} />
                 ))}
               </div>
             )}
@@ -190,19 +192,19 @@ export function ContactWizard() {
                 <span className="mx-auto grid size-14 place-items-center rounded-full bg-accent/15 text-xl text-accent">
                   <FontAwesomeIcon icon={faCheck} />
                 </span>
-                <p className="mt-4 text-muted">Thanks for reaching out. I will reply to you by email soon.</p>
+                <p className="mt-4 text-muted">{t('wizard.doneText')}</p>
                 <div className="mt-6 flex justify-center gap-3">
-                  <button type="button" onClick={() => { reset(); close() }} className={`${btnPrimary} cursor-pointer`}>Done</button>
+                  <button type="button" onClick={() => { reset(); close() }} className={`${btnPrimary} cursor-pointer`}>{t('wizard.done')}</button>
                 </div>
               </div>
             ) : step < 3 ? (
               <div className="mt-6">
                 {step === 0 && (
                   <fieldset>
-                    <legend className="mb-3 text-sm text-muted">Choose one or more services.</legend>
+                    <legend className="mb-3 text-sm text-muted">{t('wizard.q1')}</legend>
                     <div className="grid gap-2.5 sm:grid-cols-2">
                       {SERVICES.map((service) => (
-                        <Choice key={service.id} type="checkbox" name="service" label={service.title} checked={services.includes(service.title)} onChange={() => toggleService(service.title)} />
+                        <Choice key={service.id} type="checkbox" name="service" label={t(`services.items.${service.id}.title`)} checked={services.includes(service.id)} onChange={() => toggleService(service.id)} />
                       ))}
                     </div>
                   </fieldset>
@@ -210,16 +212,16 @@ export function ContactWizard() {
 
                 {step === 1 && (
                   <fieldset>
-                    <legend className="mb-3 text-sm text-muted">Which role are you looking for?</legend>
+                    <legend className="mb-3 text-sm text-muted">{t('wizard.q2')}</legend>
                     <div className="grid gap-2.5">
                       {[...WORK_TYPES, OTHER_WORK].map((option) => (
-                        <Choice key={option} type="radio" name="work" label={option} checked={work === option} onChange={() => setWork(option)} />
+                        <Choice key={option} type="radio" name="work" label={t(`wizard.work.${option}`)} checked={work === option} onChange={() => setWork(option)} />
                       ))}
                     </div>
                     {work === OTHER_WORK && (
                       <div className="mt-3">
-                        <label htmlFor="w-other" className="sr-only">Describe the work</label>
-                        <input id="w-other" value={otherWork} onChange={(e) => setOtherWork(e.target.value)} maxLength={80} placeholder="Describe the work" className={fieldClass} />
+                        <label htmlFor="w-other" className="sr-only">{t('wizard.otherPlaceholder')}</label>
+                        <input id="w-other" value={otherWork} onChange={(e) => setOtherWork(e.target.value)} maxLength={80} placeholder={t('wizard.otherPlaceholder')} className={fieldClass} />
                       </div>
                     )}
                   </fieldset>
@@ -227,10 +229,10 @@ export function ContactWizard() {
 
                 {step === 2 && (
                   <fieldset>
-                    <legend className="mb-3 text-sm text-muted">What kind of engagement is it?</legend>
+                    <legend className="mb-3 text-sm text-muted">{t('wizard.q3')}</legend>
                     <div className="grid gap-2.5 sm:grid-cols-2">
                       {JOB_TYPES.map((option) => (
-                        <Choice key={option} type="radio" name="job" label={option} checked={job === option} onChange={() => setJob(option)} />
+                        <Choice key={option} type="radio" name="job" label={t(`wizard.job.${option}`)} checked={job === option} onChange={() => setJob(option)} />
                       ))}
                     </div>
                   </fieldset>
@@ -238,31 +240,31 @@ export function ContactWizard() {
 
                 <div className="mt-8 flex items-center justify-between gap-3">
                   {step > 0 ? (
-                    <button type="button" onClick={() => setStep(step - 1)} className={`${btnOutline} cursor-pointer`}>Back</button>
+                    <button type="button" onClick={() => setStep(step - 1)} className={`${btnOutline} cursor-pointer`}>{t('wizard.back')}</button>
                   ) : <span />}
                   <button type="button" disabled={!canContinue} onClick={() => setStep(step + 1)} className={`${btnPrimary} cursor-pointer disabled:cursor-not-allowed disabled:opacity-50`}>
-                    Next
+                    {t('wizard.next')}
                   </button>
                 </div>
               </div>
             ) : (
               <form onSubmit={onSubmit} className="mt-6 space-y-4">
                 <div>
-                  <label htmlFor="w-name" className={labelClass}>Name</label>
+                  <label htmlFor="w-name" className={labelClass}>{t('wizard.name')}</label>
                   <input id="w-name" name="name" required maxLength={80} autoComplete="name" className={fieldClass} />
                 </div>
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div>
-                    <label htmlFor="w-email" className={labelClass}>Email</label>
-                    <input id="w-email" name="email" type="email" required maxLength={120} autoComplete="email" className={fieldClass} />
+                    <label htmlFor="w-email" className={labelClass}>{t('wizard.email')}</label>
+                    <input id="w-email" name="email" type="email" dir="ltr" required maxLength={120} autoComplete="email" className={fieldClass} />
                   </div>
                   <div>
-                    <label htmlFor="w-phone" className={labelClass}>Phone <span className="font-normal text-muted">(optional)</span></label>
-                    <input id="w-phone" name="phone" type="tel" maxLength={30} autoComplete="tel" className={fieldClass} />
+                    <label htmlFor="w-phone" className={labelClass}>{t('wizard.phone')} <span className="font-normal text-muted">{t('wizard.optional')}</span></label>
+                    <input id="w-phone" name="phone" type="tel" dir="ltr" maxLength={30} autoComplete="tel" className={fieldClass} />
                   </div>
                 </div>
                 <div>
-                  <label htmlFor="w-message" className={labelClass}>Message <span className="font-normal text-muted">(optional)</span></label>
+                  <label htmlFor="w-message" className={labelClass}>{t('wizard.message')} <span className="font-normal text-muted">{t('wizard.optional')}</span></label>
                   <textarea id="w-message" name="message" rows={3} maxLength={2000} className={fieldClass} />
                 </div>
                 <div aria-hidden="true" className="sr-only">
@@ -271,14 +273,14 @@ export function ContactWizard() {
 
                 <p role="status" aria-live="polite" className="min-h-5 text-sm text-muted">
                   {status === 'error' && (
-                    <>Could not send. Please email me at <a href={PROFILE.mailUrl} className="text-accent underline">{PROFILE.email}</a>.</>
+                    <Trans i18nKey="wizard.error" values={{ email: PROFILE.email }} components={{ mail: <a href={PROFILE.mailUrl} dir="ltr" className="text-accent underline" /> }} />
                   )}
                 </p>
 
                 <div className="flex items-center justify-between gap-3">
-                  <button type="button" onClick={() => setStep(2)} className={`${btnOutline} cursor-pointer`}>Back</button>
+                  <button type="button" onClick={() => setStep(2)} className={`${btnOutline} cursor-pointer`}>{t('wizard.back')}</button>
                   <button type="submit" disabled={status === 'sending'} className={`${btnPrimary} cursor-pointer disabled:opacity-60`}>
-                    {status === 'sending' ? 'Sending…' : 'Send'}
+                    {status === 'sending' ? t('wizard.sending') : t('wizard.send')}
                   </button>
                 </div>
               </form>

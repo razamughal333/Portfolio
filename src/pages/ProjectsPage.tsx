@@ -1,5 +1,6 @@
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router'
 import { ProjectCard } from '../components/ProjectCard'
 import { RepoCard } from '../components/RepoCard'
@@ -20,27 +21,26 @@ function Heading({ label, title }: { label: string; title: string }) {
 }
 
 export function ProjectsPage() {
-  useDocumentTitle('Projects | Raza Ahmed')
+  const { t } = useTranslation()
+  useDocumentTitle(t('pages.projectsTitle'))
   const repos = useGithubRepos(GITHUB_USERNAME)
 
   return (
     <div className="mx-auto max-w-5xl px-5 pt-28 pb-24 sm:px-8">
       <Link to="/" className="inline-flex items-center gap-2 text-sm text-muted transition hover:text-accent">
-        <FontAwesomeIcon icon={faArrowLeft} />
-        Back to Home
+        <FontAwesomeIcon icon={faArrowLeft} className="rtl:rotate-180" />
+        {t('common.backHome')}
       </Link>
 
       <header className="mt-8 text-center">
         <h1 className="font-display text-4xl font-extrabold tracking-tight sm:text-6xl">
-          All <span className="text-primary">Projects</span>
+          <Trans i18nKey="projects.pageTitle" components={{ hl: <span className="text-primary" /> }} />
         </h1>
-        <p className="mt-4 text-muted">
-          Featured work + all public GitHub repositories, kept up to date from GitHub.
-        </p>
+        <p className="mt-4 text-muted">{t('projects.pageSubtitle')}</p>
       </header>
 
       <section className="mt-16">
-        <Heading label="Handpicked" title="Featured Projects" />
+        <Heading label={t('projects.featuredLabel')} title={t('projects.featuredTitle')} />
         <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {FEATURED_PROJECTS.map((project) => (
             <ProjectCard key={project.id} project={project} />
@@ -49,11 +49,11 @@ export function ProjectsPage() {
       </section>
 
       <section className="mt-20">
-        <Heading label="GitHub repos" title="All Public Repositories" />
+        <Heading label={t('projects.reposLabel')} title={t('projects.reposTitle')} />
 
         <div className="mt-8" aria-live="polite">
           {repos.status === 'loading' && (
-            <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3" aria-label="Loading repositories">
+            <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3" aria-label={t('projects.loading')}>
               {[0, 1, 2].map((n) => (
                 <div key={n} className="h-52 animate-pulse rounded-2xl border border-line bg-surface motion-reduce:animate-none" />
               ))}
@@ -62,22 +62,22 @@ export function ProjectsPage() {
 
           {repos.status === 'error' && (
             <div className="rounded-2xl border border-dashed border-line p-8 text-center text-muted">
-              <p>Couldn't load the repositories right now. GitHub may be limiting requests.</p>
+              <p>{t('projects.error')}</p>
               <a
                 href={GITHUB_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-3 inline-flex items-center gap-2 font-semibold text-primary hover:text-accent"
               >
-                View all repos on GitHub
-                <FontAwesomeIcon icon={faArrowRight} />
+                {t('projects.errorLink')}
+                <FontAwesomeIcon icon={faArrowRight} className="rtl:rotate-180" />
               </a>
             </div>
           )}
 
           {repos.status === 'ready' && repos.repos.length === 0 && (
             <p className="rounded-2xl border border-dashed border-line p-8 text-center text-muted">
-              No public repositories to show yet.
+              {t('projects.empty')}
             </p>
           )}
 

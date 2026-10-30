@@ -1,6 +1,7 @@
 import { faEnvelope, faLocationDot, faPhone } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
 import type { FormEvent } from 'react'
 import { PROFILE } from '../data/profile'
 import { NotConfiguredError, sendInquiry } from '../lib/sendInquiry'
@@ -10,13 +11,15 @@ import { Section } from './Section'
 
 type Status = 'idle' | 'sending' | 'sent' | 'error'
 
+// `label` is a key in the language files (contact.<label>). The location text comes from common.location.
 const INFO = [
-  { icon: faEnvelope, label: 'Email', value: PROFILE.email, href: PROFILE.mailUrl },
-  { icon: faPhone, label: 'Phone', value: PROFILE.phone, href: `tel:${PROFILE.phone.replace(/\s/g, '')}` },
-  { icon: faLocationDot, label: 'Location', value: PROFILE.location },
+  { icon: faEnvelope, label: 'email', value: PROFILE.email, href: PROFILE.mailUrl },
+  { icon: faPhone, label: 'phone', value: PROFILE.phone, href: `tel:${PROFILE.phone.replace(/\s/g, '')}` },
+  { icon: faLocationDot, label: 'location', value: null },
 ] as const
 
 export function ContactSection() {
+  const { t } = useTranslation()
   const [status, setStatus] = useState<Status>('idle')
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -47,12 +50,11 @@ export function ContactSection() {
   }
 
   return (
-    <Section id="contact" title="Contact Me">
+    <Section id="contact" title={t('section.contact')}>
       <div className="grid gap-10 md:grid-cols-[2fr_3fr]">
         <div>
           <p className="leading-relaxed text-muted">
-            Open to web development roles, internships and freelance projects. Send a message and I
-            will reply as soon as I can.
+            {t('contact.intro')}
           </p>
           <ul className="mt-8 space-y-5">
             {INFO.map((item) => (
@@ -61,13 +63,13 @@ export function ContactSection() {
                   <FontAwesomeIcon icon={item.icon} />
                 </span>
                 <div className="min-w-0">
-                  <p className="font-mono text-xs text-muted">{item.label}</p>
+                  <p className="font-mono text-xs text-muted">{t(`contact.${item.label}`)}</p>
                   {'href' in item ? (
-                    <a href={item.href} className="break-words font-semibold hover:text-accent">
+                    <a href={item.href} dir="ltr" className="inline-block break-words font-semibold hover:text-accent">
                       {item.value}
                     </a>
                   ) : (
-                    <p className="font-semibold">{item.value}</p>
+                    <p className="font-semibold">{t('common.location')}</p>
                   )}
                 </div>
               </li>
@@ -78,16 +80,16 @@ export function ContactSection() {
         <form onSubmit={onSubmit} className="rounded-2xl border border-line bg-surface p-6 sm:p-8">
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
-              <label htmlFor="c-name" className={labelClass}>Name</label>
+              <label htmlFor="c-name" className={labelClass}>{t('contact.name')}</label>
               <input id="c-name" name="name" required maxLength={80} autoComplete="name" className={fieldClass} />
             </div>
             <div>
-              <label htmlFor="c-email" className={labelClass}>Email</label>
-              <input id="c-email" name="email" type="email" required maxLength={120} autoComplete="email" className={fieldClass} />
+              <label htmlFor="c-email" className={labelClass}>{t('contact.email')}</label>
+              <input id="c-email" name="email" type="email" dir="ltr" required maxLength={120} autoComplete="email" className={fieldClass} />
             </div>
           </div>
           <div className="mt-5">
-            <label htmlFor="c-message" className={labelClass}>Message</label>
+            <label htmlFor="c-message" className={labelClass}>{t('contact.message')}</label>
             <textarea id="c-message" name="message" required rows={5} maxLength={2000} className={fieldClass} />
           </div>
 
@@ -98,14 +100,17 @@ export function ContactSection() {
 
           <div className="mt-6 flex flex-wrap items-center gap-4">
             <button type="submit" disabled={status === 'sending'} className={`${btnPrimary} cursor-pointer disabled:opacity-60`}>
-              {status === 'sending' ? 'Sending…' : 'Send Message'}
+              {status === 'sending' ? t('contact.sending') : t('contact.send')}
             </button>
             <p role="status" aria-live="polite" className="text-sm">
-              {status === 'sent' && <span className="text-accent">Thanks! Your message was sent.</span>}
+              {status === 'sent' && <span className="text-accent">{t('contact.sent')}</span>}
               {status === 'error' && (
                 <span className="text-muted">
-                  Could not send. Please email me at{' '}
-                  <a href={PROFILE.mailUrl} className="text-accent underline">{PROFILE.email}</a>.
+                  <Trans
+                    i18nKey="contact.error"
+                    values={{ email: PROFILE.email }}
+                    components={{ mail: <a href={PROFILE.mailUrl} dir="ltr" className="text-accent underline" /> }}
+                  />
                 </span>
               )}
             </p>

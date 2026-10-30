@@ -1,4 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useTranslation } from 'react-i18next'
 import type { SkillGroup } from '../data/about'
 
 type SkillChipsProps = {
@@ -9,6 +10,7 @@ type SkillChipsProps = {
 
 // A row of small skill pills. Used on the home page and the About page.
 export function SkillChips({ group, dashed = false, onCard = false }: SkillChipsProps) {
+  const { t } = useTranslation()
   return (
     <ul className="flex flex-wrap gap-2.5">
       {group.skills.map((skill) => (
@@ -19,7 +21,7 @@ export function SkillChips({ group, dashed = false, onCard = false }: SkillChips
           } ${dashed ? 'border-dashed border-accent/60' : 'border-line'}`}
         >
           <FontAwesomeIcon icon={skill.icon} className="text-primary" />
-          {skill.name}
+          {skill.i18nKey ? t(skill.i18nKey) : skill.name}
         </li>
       ))}
     </ul>

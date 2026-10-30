@@ -1,12 +1,7 @@
-// Choices shown in the Contact wizard (services come from services.ts).
-export const WORK_TYPES = [
-  'Web Developer',
-  'Frontend Developer',
-  'Full-Stack (MERN) Developer',
-  'Backend / API Developer',
-  'React Developer',
-] as const
+// Choices shown in the Contact wizard. These are ids; the visible words are in the language files
+// (wizard.work.<id> and wizard.job.<id>). Services come from services.ts.
+export const WORK_TYPES = ['web', 'frontend', 'fullstack', 'backend', 'react'] as const
 
-export const OTHER_WORK = 'Others'
+export const OTHER_WORK = 'other'
 
-export const JOB_TYPES = ['Contract', 'Visiting', 'Intern', 'Probation', 'Permanent'] as const
+export const JOB_TYPES = ['contract', 'visiting', 'intern', 'probation', 'permanent'] as const

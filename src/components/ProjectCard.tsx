@@ -1,6 +1,7 @@
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useTranslation } from 'react-i18next'
 import type { Project } from '../data/projects'
 
 const smallButton =
@@ -8,6 +9,7 @@ const smallButton =
 
 // One featured project. "Live" opens the running site in a new tab, "Code" opens the repo.
 export function ProjectCard({ project }: { project: Project }) {
+  const { t } = useTranslation()
   return (
     <article className="flex flex-col rounded-2xl border border-line bg-surface p-6 transition duration-200 hover:-translate-y-1 hover:border-accent/60">
       <div className="flex items-start justify-between">
@@ -17,13 +19,13 @@ export function ProjectCard({ project }: { project: Project }) {
         {project.liveUrl && (
           <span className="inline-flex items-center gap-2 rounded-full border border-line px-3 py-1 font-mono text-xs text-muted">
             <span className="size-1.5 rounded-full bg-accent" />
-            Live
+            {t('projects.live')}
           </span>
         )}
       </div>
 
       <h3 className="mt-5 font-display text-xl font-bold">{project.title}</h3>
-      <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">{project.description}</p>
+      <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">{t(`projects.desc.${project.id}`)}</p>
 
       <ul className="mt-5 flex flex-wrap gap-2">
         {project.tags.map((tag) => (
@@ -42,7 +44,7 @@ export function ProjectCard({ project }: { project: Project }) {
             className={`${smallButton} border-primary bg-primary text-on-primary hover:brightness-110`}
           >
             <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
-            Live
+            {t('projects.live')}
           </a>
         )}
         <a
@@ -52,7 +54,7 @@ export function ProjectCard({ project }: { project: Project }) {
           className={`${smallButton} border-line text-text hover:border-accent hover:text-accent`}
         >
           <FontAwesomeIcon icon={faGithub} />
-          Code
+          {t('projects.code')}
         </a>
       </div>
     </article>

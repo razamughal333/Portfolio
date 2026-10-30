@@ -1,6 +1,7 @@
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { addLike, getLikes, likesConfigured } from '../lib/likes'
 
 const STORAGE_KEY = 'site-liked-v1'
@@ -16,6 +17,7 @@ function readLiked() {
 // Footer heart. The count lives in the database, so it survives refreshes and new browsers.
 // If the database can't be reached, the button hides itself instead of showing a broken count.
 export function LikeButton() {
+  const { t } = useTranslation()
   const [count, setCount] = useState<number | null>(null)
   const [failed, setFailed] = useState(false)
   const [liked, setLiked] = useState(readLiked)
@@ -64,7 +66,7 @@ export function LikeButton() {
       type="button"
       onClick={onClick}
       aria-pressed={liked}
-      aria-label={liked ? `You liked this site. ${count} likes` : `Like this site. ${count} likes`}
+      aria-label={liked ? t('footer.liked', { count }) : t('footer.like', { count })}
       className={`mx-auto mt-5 inline-flex cursor-pointer items-center gap-2 rounded-full border px-4 py-2 font-semibold transition duration-200 ${
         liked ? 'border-accent text-accent' : 'border-line text-muted hover:border-accent hover:text-accent'
       }`}
