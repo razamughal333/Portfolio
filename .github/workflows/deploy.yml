@@ -5,6 +5,8 @@ on:
   push:
     branches: [main]
   workflow_dispatch: # also lets you run it by hand from the Actions tab
+  schedule:
+    - cron: '0 3 * * *' # rebuild daily so the GitHub repos list stays fresh
 
 # The minimum permissions needed to publish a Pages site.
 permissions:
@@ -30,6 +32,11 @@ jobs:
 
       - name: Install packages
         run: npm ci
+
+      - name: Save my GitHub repos list
+        run: node scripts/fetch-repos.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Check code style
         run: npm run lint

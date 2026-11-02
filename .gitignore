@@ -27,3 +27,6 @@ dist-ssr
 .env
 .env.*
 !.env.example
+
+# Generated before each build by scripts/fetch-repos.mjs
+public/repos.json

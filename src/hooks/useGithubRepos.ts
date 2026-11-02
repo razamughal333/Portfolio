@@ -91,13 +91,25 @@ export function useGithubRepos(username: string): State {
     if (cached && Date.now() - cached.savedAt < FRESH_FOR_MS) return // already showing the saved list
 
     const controller = new AbortController()
-    fetch(`https://api.github.com/users/${username}/repos?per_page=100&sort=pushed`, {
-      signal: controller.signal,
-      headers: { Accept: 'application/vnd.github+json' },
-    })
+    // 1) The list saved at build time (no limits). 2) If that's missing, ask GitHub live.
+    fetch(`${import.meta.env.BASE_URL}repos.json`, { signal: controller.signal })
       .then((response) => {
-        if (!response.ok) throw new Error(`GitHub answered ${response.status}`)
+        if (!response.ok) throw new Error('No saved list')
         return response.json() as Promise<unknown>
+      })
+      .then((data) => {
+        if (!Array.isArray(data)) throw new Error('Saved list is not a list')
+        return data as unknown
+      })
+      .catch(() => {
+        if (controller.signal.aborted) throw new Error('aborted')
+        return fetch(`https://api.github.com/users/${username}/repos?per_page=100&sort=pushed`, {
+          signal: controller.signal,
+          headers: { Accept: 'application/vnd.github+json' },
+        }).then((response) => {
+          if (!response.ok) throw new Error(`GitHub answered ${response.status}`)
+          return response.json() as Promise<unknown>
+        })
       })
       .then((data) => {
         const repos = parseRepos(data, username)
